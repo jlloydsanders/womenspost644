@@ -15,13 +15,21 @@ const CATEGORY_META = {
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.gif', '.webp']);
 
 exports.handler = async () => {
-  // Netlify deploys site files to /var/task
-  // Try multiple candidate paths to find the images folder
+  // Netlify sets cwd to /var/task (repo root)
+  // Try every likely location for the images folder
   const candidatePaths = [
-    '/var/task/images',
-    path.join(__dirname, '..', '..', 'images'),
-    path.join(process.cwd(), 'images'),
+    path.join(process.cwd(), 'images'),                        // repo root  /var/task/images
+    path.join(process.cwd(), 'post644-multipage', 'images'),   // subfolder  /var/task/post644-multipage/images
+    '/var/task/images',                                         // absolute fallback
   ];
+
+  // Also auto-scan for any subfolder that contains an images/ directory
+  try {
+    const topLevel = fs.readdirSync(process.cwd(), { withFileTypes: true })
+      .filter(d => d.isDirectory() && !d.name.startsWith('.') && !d.name.startsWith('netlify'))
+      .map(d => path.join(process.cwd(), d.name, 'images'));
+    candidatePaths.push(...topLevel);
+  } catch (_) {}
 
   let imagesRoot = null;
   for (const p of candidatePaths) {
@@ -33,16 +41,23 @@ exports.handler = async () => {
     } catch (_) {}
   }
 
-  // Always log for debugging in Netlify function logs
-  console.log('__dirname:', __dirname);
+  // Log repo root contents to help diagnose structure
+  let rootContents = [];
+  try { rootContents = fs.readdirSync(process.cwd()); } catch (_) {}
+
   console.log('cwd:', process.cwd());
+  console.log('repo root contents:', rootContents);
   console.log('imagesRoot resolved:', imagesRoot);
-  console.log('candidates tried:', candidatePaths);
 
   if (!imagesRoot) {
     return respond(200, {
       categories: [],
-      _debug: { tried: candidatePaths, dirname: __dirname, cwd: process.cwd() }
+      _debug: {
+        cwd: process.cwd(),
+        rootContents,
+        tried: candidatePaths,
+        message: 'images/ folder not found — check repo structure above'
+      }
     });
   }
 
@@ -78,7 +93,7 @@ exports.handler = async () => {
       }
     }
 
-    console.log(`Returning ${categories.length} categories with photos`);
+    console.log(`Found ${categories.length} categories`);
     return respond(200, { categories });
 
   } catch (err) {
