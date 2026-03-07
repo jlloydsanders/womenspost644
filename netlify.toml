@@ -1,0 +1,14 @@
+# netlify.toml
+# Place this file in the ROOT of your repository alongside index.html
+# ─────────────────────────────────────────────────────────────────────────────
+
+[build]
+  # No build command needed — this is a plain HTML site
+  publish = "."
+  functions = "netlify/functions"
+
+[[headers]]
+  # Allow gallery images to be cached by the browser for 1 day
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
