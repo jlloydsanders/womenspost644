@@ -1,19 +1,7 @@
 // netlify/functions/list-photos.js
-// ─────────────────────────────────────────────────────────────────────────────
-// Serverless function that scans the /images folder and returns a structured
-// JSON manifest of all categories and photos found.
-//
-// The gallery page calls: /.netlify/functions/list-photos
-// Response matches the same shape as photos.json so the gallery works
-// identically — but with ZERO manual updates needed.
-//
-// To add a photo: just upload it to images/[category]/ on GitHub. Done.
-// ─────────────────────────────────────────────────────────────────────────────
-
 const fs   = require('fs');
 const path = require('path');
 
-// Category display config — label, icon, color per folder name
 const CATEGORY_META = {
   events:      { label: 'Events',      icon: '🎖️', color: '#1C2F5E' },
   community:   { label: 'Community',   icon: '🤝', color: '#1a5c35' },
@@ -27,37 +15,62 @@ const CATEGORY_META = {
 const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.gif', '.webp']);
 
 exports.handler = async () => {
+  // Netlify deploys site files to /var/task
+  // Try multiple candidate paths to find the images folder
+  const candidatePaths = [
+    '/var/task/images',
+    path.join(__dirname, '..', '..', 'images'),
+    path.join(process.cwd(), 'images'),
+  ];
+
+  let imagesRoot = null;
+  for (const p of candidatePaths) {
+    try {
+      if (fs.existsSync(p) && fs.statSync(p).isDirectory()) {
+        imagesRoot = p;
+        break;
+      }
+    } catch (_) {}
+  }
+
+  // Always log for debugging in Netlify function logs
+  console.log('__dirname:', __dirname);
+  console.log('cwd:', process.cwd());
+  console.log('imagesRoot resolved:', imagesRoot);
+  console.log('candidates tried:', candidatePaths);
+
+  if (!imagesRoot) {
+    return respond(200, {
+      categories: [],
+      _debug: { tried: candidatePaths, dirname: __dirname, cwd: process.cwd() }
+    });
+  }
+
   try {
-    // Netlify deploys your repo to /var/task — images folder sits at root
-    const imagesRoot = path.join(__dirname, '..', '..', 'images');
-
-    if (!fs.existsSync(imagesRoot)) {
-      return respond(200, { categories: [] });
-    }
-
     const categories = [];
 
-    // Read each subfolder as a category
     const folders = fs.readdirSync(imagesRoot, { withFileTypes: true })
-      .filter(d => d.isDirectory())
+      .filter(d => d.isDirectory() && !d.name.startsWith('.'))
       .map(d => d.name)
       .sort();
 
     for (const folderName of folders) {
       const folderPath = path.join(imagesRoot, folderName);
       const meta = CATEGORY_META[folderName] || {
-        label: capitalize(folderName),
+        label: folderName.charAt(0).toUpperCase() + folderName.slice(1),
         icon:  '📷',
         color: '#1C2F5E',
       };
 
-      // Collect image files, sorted alphabetically
       const photos = fs.readdirSync(folderPath)
-        .filter(f => IMAGE_EXTENSIONS.has(path.extname(f).toLowerCase()))
+        .filter(f => !f.startsWith('.') && IMAGE_EXTENSIONS.has(path.extname(f).toLowerCase()))
         .sort()
         .map(filename => ({
-          file:    filename,
-          caption: toCaption(filename),
+          file: filename,
+          caption: filename
+            .replace(/\.[^.]+$/, '')
+            .replace(/[-_]/g, ' ')
+            .replace(/\b\w/g, c => c.toUpperCase()),
         }));
 
       if (photos.length > 0) {
@@ -65,15 +78,14 @@ exports.handler = async () => {
       }
     }
 
+    console.log(`Returning ${categories.length} categories with photos`);
     return respond(200, { categories });
 
   } catch (err) {
-    console.error('list-photos error:', err);
-    return respond(500, { error: 'Could not read image directory', detail: err.message });
+    console.error('Scan error:', err.message);
+    return respond(500, { error: err.message, categories: [] });
   }
 };
-
-// ── Helpers ──────────────────────────────────────────────────────────────────
 
 function respond(statusCode, body) {
   return {
@@ -81,20 +93,8 @@ function respond(statusCode, body) {
     headers: {
       'Content-Type':                'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Cache-Control':               'public, max-age=60', // cache 60s
+      'Cache-Control':               'no-cache',
     },
     body: JSON.stringify(body),
   };
-}
-
-// "my-photo_name.jpg" → "My Photo Name"
-function toCaption(filename) {
-  return filename
-    .replace(/\.[^.]+$/, '')          // remove extension
-    .replace(/[-_]/g, ' ')            // dashes/underscores → spaces
-    .replace(/\b\w/g, c => c.toUpperCase()); // Title Case
-}
-
-function capitalize(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
 }
