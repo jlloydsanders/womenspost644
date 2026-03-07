@@ -1,6 +1,10 @@
 // netlify/functions/list-photos.js
-const fs   = require('fs');
-const path = require('path');
+// Uses the GitHub API to list images — works regardless of Netlify's
+// filesystem bundling. No token needed for public repos.
+
+const GITHUB_USER = 'jlloydsanders';
+const GITHUB_REPO = 'womenspost644';
+const IMAGES_PATH = 'images';  // folder in repo root
 
 const CATEGORY_META = {
   events:      { label: 'Events',      icon: '🎖️', color: '#1C2F5E' },
@@ -14,94 +18,68 @@ const CATEGORY_META = {
 
 const IMAGE_EXTENSIONS = new Set(['.jpg','.jpeg','.png','.gif','.webp']);
 
+const BASE = `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents`;
+
+async function ghFetch(urlPath) {
+  const res = await fetch(`${BASE}/${urlPath}`, {
+    headers: { 'Accept': 'application/vnd.github.v3+json', 'User-Agent': 'post644-gallery' }
+  });
+  if (!res.ok) throw new Error(`GitHub API ${res.status} for ${urlPath}`);
+  return res.json();
+}
+
+function toCaption(filename) {
+  return filename
+    .replace(/\.[^.]+$/, '')
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, c => c.toUpperCase());
+}
+
 exports.handler = async () => {
-  // __dirname = /var/task (which is netlify/functions/ at runtime)
-  // So we walk UP from __dirname to find the repo root where images/ lives:
-  //   __dirname         = .../netlify/functions
-  //   one up            = .../netlify
-  //   two up            = repo root  <-- images/ should be here
-  const repoRoot = path.resolve(__dirname, '..', '..');
-
-  // Build candidate list — repo root first, then any subfolders inside it
-  const candidatePaths = [
-    path.join(repoRoot, 'images'),
-  ];
-
-  // Also check one level deeper in case files are in a subfolder
   try {
-    fs.readdirSync(repoRoot, { withFileTypes: true })
-      .filter(d => d.isDirectory() && !d.name.startsWith('.') && d.name !== 'netlify')
-      .forEach(d => candidatePaths.push(path.join(repoRoot, d.name, 'images')));
-  } catch (_) {}
+    // 1. List all category folders inside images/
+    const topLevel = await ghFetch(IMAGES_PATH);
+    const folders  = topLevel.filter(item => item.type === 'dir');
 
-  let imagesRoot = null;
-  for (const p of candidatePaths) {
-    try {
-      if (fs.existsSync(p) && fs.statSync(p).isDirectory()) {
-        imagesRoot = p;
-        break;
-      }
-    } catch (_) {}
-  }
-
-  // Debug info
-  let rootContents = [];
-  try { rootContents = fs.readdirSync(repoRoot); } catch (_) {}
-
-  console.log('__dirname  :', __dirname);
-  console.log('repoRoot   :', repoRoot);
-  console.log('rootContents:', rootContents);
-  console.log('imagesRoot :', imagesRoot);
-
-  if (!imagesRoot) {
-    return respond(200, {
-      categories: [],
-      _debug: {
-        dirname: __dirname,
-        repoRoot,
-        rootContents,
-        tried: candidatePaths,
-        message: 'images/ folder not found'
-      }
-    });
-  }
-
-  try {
     const categories = [];
 
-    const folders = fs.readdirSync(imagesRoot, { withFileTypes: true })
-      .filter(d => d.isDirectory() && !d.name.startsWith('.'))
-      .map(d => d.name)
-      .sort();
-
-    for (const folderName of folders) {
+    // 2. For each folder, list its image files
+    await Promise.all(folders.map(async folder => {
+      const folderName = folder.name;
       const meta = CATEGORY_META[folderName] || {
         label: folderName.charAt(0).toUpperCase() + folderName.slice(1),
         icon:  '📷',
         color: '#1C2F5E',
       };
 
-      const photos = fs.readdirSync(path.join(imagesRoot, folderName))
-        .filter(f => !f.startsWith('.') && IMAGE_EXTENSIONS.has(path.extname(f).toLowerCase()))
-        .sort()
-        .map(filename => ({
-          file:    filename,
-          caption: filename
-            .replace(/\.[^.]+$/, '')
-            .replace(/[-_]/g, ' ')
-            .replace(/\b\w/g, c => c.toUpperCase()),
+      const contents = await ghFetch(`${IMAGES_PATH}/${folderName}`);
+      const photos = contents
+        .filter(f => f.type === 'file' && IMAGE_EXTENSIONS.has(
+          f.name.slice(f.name.lastIndexOf('.')).toLowerCase()
+        ))
+        .sort((a, b) => a.name.localeCompare(b.name))
+        .map(f => ({
+          file:    f.name,
+          caption: toCaption(f.name),
         }));
 
       if (photos.length > 0) {
         categories.push({ id: folderName, ...meta, photos });
       }
-    }
+    }));
 
-    console.log(`Returning ${categories.length} categories`);
+    // Sort categories by defined order
+    const order = Object.keys(CATEGORY_META);
+    categories.sort((a, b) => {
+      const ai = order.indexOf(a.id);
+      const bi = order.indexOf(b.id);
+      return (ai === -1 ? 99 : ai) - (bi === -1 ? 99 : bi);
+    });
+
     return respond(200, { categories });
 
   } catch (err) {
-    console.error('Scan error:', err.message);
+    console.error('list-photos error:', err.message);
     return respond(500, { error: err.message, categories: [] });
   }
 };
@@ -112,7 +90,7 @@ function respond(statusCode, body) {
     headers: {
       'Content-Type':                'application/json',
       'Access-Control-Allow-Origin': '*',
-      'Cache-Control':               'no-cache',
+      'Cache-Control':               'public, max-age=300', // cache 5 mins
     },
     body: JSON.stringify(body),
   };
