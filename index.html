@@ -3,811 +3,8 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>American Legion Women's Post 644</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
-<style>
-  :root {
-    --red: #B22234;
-    --red-dark: #8B0000;
-    --red-light: #CC3344;
-    --blue: #1C2F5E;
-    --blue-light: #2A4080;
-    --blue-mid: #3D5A99;
-    --gold: #C9A84C;
-    --gold-light: #E8C96A;
-    --white: #FAFAF8;
-    --off-white: #F4F1EB;
-    --gray: #6B6B6B;
-    --light-gray: #E8E4DC;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Source Sans 3', sans-serif;
-    background: var(--white);
-    color: #222;
-    overflow-x: hidden;
-  }
-
-  /* ── STARS PATTERN ── */
-  .stars-bg {
-    background-image: radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px);
-    background-size: 28px 28px;
-  }
-
-  /* ── TOP BAR ── */
-  .top-bar {
-    background: var(--blue);
-    color: rgba(255,255,255,0.75);
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 7px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .top-bar a { color: var(--gold-light); text-decoration: none; }
-  .top-bar a:hover { text-decoration: underline; }
-
-  /* ── NAV ── */
-  nav {
-    background: var(--white);
-    border-bottom: 3px solid var(--red);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 20px rgba(0,0,0,0.12);
-  }
-  .nav-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 70px;
-  }
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    text-decoration: none;
-  }
-  .nav-emblem {
-    width: 48px;
-    height: 48px;
-  }
-  .nav-title {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-  }
-  .nav-title .post-name {
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
-    font-size: 1.05rem;
-    color: var(--blue);
-  }
-  .nav-title .post-sub {
-    font-size: 0.7rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--red);
-    font-weight: 600;
-  }
-  .nav-links {
-    display: flex;
-    gap: 6px;
-    list-style: none;
-  }
-  .nav-links a {
-    display: block;
-    padding: 8px 14px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--blue);
-    text-decoration: none;
-    border-radius: 4px;
-    transition: all 0.2s;
-  }
-  .nav-links a:hover {
-    background: var(--off-white);
-    color: var(--red);
-  }
-  .nav-cta {
-    background: var(--red) !important;
-    color: white !important;
-    border-radius: 4px;
-  }
-  .nav-cta:hover {
-    background: var(--red-dark) !important;
-    color: white !important;
-  }
-
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(160deg, var(--blue) 0%, var(--blue-light) 45%, var(--blue-mid) 100%);
-    color: white;
-    position: relative;
-    overflow: hidden;
-    padding: 90px 40px 80px;
-    min-height: 560px;
-    display: flex;
-    align-items: center;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
-    background-size: 30px 30px;
-  }
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, var(--red) 33%, white 33%, white 66%, var(--red) 66%);
-  }
-  .hero-stripe-top {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, var(--red) 33%, white 33%, white 66%, var(--red) 66%);
-  }
-  .hero-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    width: 100%;
-    position: relative;
-    z-index: 2;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 60px;
-    align-items: center;
-  }
-  .hero-badge {
-    display: inline-block;
-    background: var(--red);
-    color: white;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    padding: 5px 16px;
-    margin-bottom: 20px;
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 50%, calc(100% - 8px) 100%, 0 100%);
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 5vw, 4rem);
-    font-weight: 900;
-    line-height: 1.05;
-    margin-bottom: 10px;
-  }
-  .hero h1 em {
-    font-style: italic;
-    color: var(--gold-light);
-  }
-  .hero-subtitle {
-    font-size: 1rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
-    margin-bottom: 24px;
-    font-weight: 300;
-  }
-  .hero-desc {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.85);
-    max-width: 560px;
-    margin-bottom: 36px;
-  }
-  .hero-buttons {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .btn-primary {
-    background: var(--red);
-    color: white;
-    padding: 14px 32px;
-    border-radius: 3px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.88rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    border: 2px solid var(--red);
-  }
-  .btn-primary:hover { background: var(--red-dark); border-color: var(--red-dark); }
-  .btn-outline {
-    background: transparent;
-    color: white;
-    padding: 14px 32px;
-    border-radius: 3px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.88rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    transition: all 0.2s;
-    border: 2px solid rgba(255,255,255,0.5);
-  }
-  .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
-  .hero-emblem-large {
-    width: 240px;
-    height: 240px;
-    opacity: 0.18;
-    filter: brightness(10);
-  }
-
-  /* ── MISSION STRIP ── */
-  .mission-strip {
-    background: var(--red);
-    color: white;
-    text-align: center;
-    padding: 22px 40px;
-  }
-  .mission-strip p {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    letter-spacing: 0.02em;
-  }
-  .mission-strip strong { font-style: normal; color: var(--gold-light); }
-
-  /* ── SECTION COMMON ── */
-  section { padding: 80px 40px; }
-  .section-inner { max-width: 1200px; margin: 0 auto; }
-  .section-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 8px;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 900;
-    color: var(--blue);
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-  .section-rule {
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--red), var(--gold));
-    margin-bottom: 30px;
-    border-radius: 2px;
-  }
-
-  /* ── ABOUT ── */
-  #about { background: var(--off-white); }
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 70px;
-    align-items: center;
-  }
-  .about-text p {
-    font-size: 1.02rem;
-    line-height: 1.8;
-    color: #333;
-    margin-bottom: 18px;
-  }
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-  .stat-card {
-    background: white;
-    border-top: 4px solid var(--red);
-    padding: 28px 24px;
-    text-align: center;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
-  }
-  .stat-card .stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
-    font-weight: 900;
-    color: var(--blue);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .stat-card .stat-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--gray);
-  }
-
-  /* ── MEETINGS ── */
-  #meetings { background: white; }
-  .meetings-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    margin-top: 20px;
-  }
-  .meeting-card {
-    border: 2px solid var(--light-gray);
-    border-radius: 4px;
-    padding: 32px 28px;
-    position: relative;
-    transition: all 0.25s;
-  }
-  .meeting-card:hover {
-    border-color: var(--red);
-    box-shadow: 0 8px 30px rgba(178,34,52,0.12);
-    transform: translateY(-3px);
-  }
-  .meeting-icon {
-    font-size: 2rem;
-    margin-bottom: 14px;
-  }
-  .meeting-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
-    color: var(--blue);
-    margin-bottom: 8px;
-  }
-  .meeting-card .meeting-time {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--red);
-    margin-bottom: 6px;
-  }
-  .meeting-card p {
-    font-size: 0.9rem;
-    color: var(--gray);
-    line-height: 1.6;
-  }
-  .meeting-address {
-    margin-top: 40px;
-    background: var(--blue);
-    color: white;
-    padding: 30px 36px;
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    border-radius: 4px;
-  }
-  .meeting-address .addr-icon { font-size: 2.5rem; }
-  .meeting-address h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    margin-bottom: 4px;
-  }
-  .meeting-address p { font-size: 0.95rem; color: rgba(255,255,255,0.75); }
-
-  /* ── MEMBERSHIP ── */
-  #membership { background: var(--blue); color: white; }
-  #membership .section-title { color: white; }
-  #membership .section-label { color: var(--gold-light); }
-  .membership-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: start;
-  }
-  .membership-text p {
-    font-size: 1rem;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.82);
-    margin-bottom: 16px;
-  }
-  .eligibility-list {
-    list-style: none;
-    margin: 20px 0 30px;
-  }
-  .eligibility-list li {
-    padding: 10px 0 10px 30px;
-    position: relative;
-    color: rgba(255,255,255,0.85);
-    font-size: 0.95rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-  .eligibility-list li::before {
-    content: '★';
-    position: absolute;
-    left: 0;
-    color: var(--gold-light);
-    font-size: 0.8rem;
-  }
-  .membership-form-area {
-    background: white;
-    padding: 40px 36px;
-    border-radius: 4px;
-    color: #222;
-  }
-  .membership-form-area h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
-    color: var(--blue);
-    margin-bottom: 6px;
-  }
-  .membership-form-area p.form-sub {
-    font-size: 0.88rem;
-    color: var(--gray);
-    margin-bottom: 24px;
-  }
-  .form-group { margin-bottom: 16px; }
-  .form-group label {
-    display: block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: 6px;
-  }
-  .form-group input,
-  .form-group select,
-  .form-group textarea {
-    width: 100%;
-    padding: 11px 14px;
-    border: 2px solid var(--light-gray);
-    border-radius: 3px;
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 0.95rem;
-    color: #222;
-    transition: border-color 0.2s;
-    background: white;
-  }
-  .form-group input:focus,
-  .form-group select:focus,
-  .form-group textarea:focus {
-    outline: none;
-    border-color: var(--red);
-  }
-  .form-group textarea { resize: vertical; min-height: 90px; }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-  .btn-submit {
-    width: 100%;
-    background: var(--red);
-    color: white;
-    padding: 14px;
-    border: none;
-    border-radius: 3px;
-    font-family: 'Source Sans 3', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.2s;
-    margin-top: 8px;
-  }
-  .btn-submit:hover { background: var(--red-dark); }
-
-  /* ── EVENTS ── */
-  #events { background: var(--off-white); }
-  .events-list { margin-top: 10px; }
-  .event-item {
-    display: grid;
-    grid-template-columns: 80px 1fr auto;
-    gap: 24px;
-    align-items: center;
-    background: white;
-    padding: 24px 28px;
-    margin-bottom: 12px;
-    border-left: 4px solid var(--red);
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    transition: all 0.2s;
-  }
-  .event-item:hover {
-    transform: translateX(4px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-  }
-  .event-date {
-    text-align: center;
-    background: var(--blue);
-    color: white;
-    padding: 10px 8px;
-    border-radius: 4px;
-    min-width: 70px;
-  }
-  .event-date .month {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-  }
-  .event-date .day {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 900;
-    line-height: 1;
-  }
-  .event-info h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    color: var(--blue);
-    margin-bottom: 4px;
-  }
-  .event-info p { font-size: 0.88rem; color: var(--gray); }
-  .event-tag {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 4px 12px;
-    border-radius: 20px;
-  }
-  .tag-meeting { background: #EEF2FF; color: var(--blue); }
-  .tag-social { background: #FFF1F2; color: var(--red); }
-  .tag-community { background: #FFFBEB; color: #92400E; }
-  .tag-fundraiser { background: #F0FDF4; color: #166534; }
-
-  /* ── NEWS ── */
-  #news { background: white; }
-  .news-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
-    margin-top: 14px;
-  }
-  .news-card {
-    border: 1px solid var(--light-gray);
-    border-radius: 4px;
-    overflow: hidden;
-    transition: all 0.25s;
-  }
-  .news-card:hover {
-    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-    transform: translateY(-4px);
-  }
-  .news-img {
-    height: 180px;
-    background: linear-gradient(135deg, var(--blue-light), var(--blue-mid));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-  }
-  .news-body { padding: 22px 20px; }
-  .news-category {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 8px;
-  }
-  .news-body h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--blue);
-    margin-bottom: 8px;
-    line-height: 1.3;
-  }
-  .news-body p {
-    font-size: 0.88rem;
-    color: var(--gray);
-    line-height: 1.6;
-    margin-bottom: 14px;
-  }
-  .news-date { font-size: 0.78rem; color: #aaa; }
-
-  /* ── GALLERY ── */
-  #gallery { background: var(--off-white); }
-  .gallery-note {
-    background: var(--blue);
-    color: white;
-    padding: 28px 32px;
-    border-radius: 4px;
-    margin-top: 16px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  .gallery-note .note-icon { font-size: 2.5rem; }
-  .gallery-note h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    margin-bottom: 4px;
-  }
-  .gallery-note p { font-size: 0.9rem; color: rgba(255,255,255,0.75); }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    margin-top: 24px;
-  }
-  .gallery-item {
-    aspect-ratio: 1;
-    background: linear-gradient(135deg, var(--blue-light), var(--blue));
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2.5rem;
-    opacity: 0.4;
-    cursor: pointer;
-    transition: opacity 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-  .gallery-item:hover { opacity: 0.7; }
-  .gallery-item span {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: rgba(0,0,0,0.5);
-    color: rgba(255,255,255,0.7);
-    font-size: 0.7rem;
-    font-family: 'Source Sans 3', sans-serif;
-    text-align: center;
-    padding: 6px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  /* ── CONTACT ── */
-  #contact { background: var(--blue); color: white; }
-  #contact .section-title { color: white; }
-  #contact .section-label { color: var(--gold-light); }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: start;
-  }
-  .contact-info-list { list-style: none; margin: 24px 0; }
-  .contact-info-list li {
-    display: flex;
-    gap: 16px;
-    padding: 16px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.12);
-    align-items: flex-start;
-  }
-  .contact-info-list .c-icon { font-size: 1.4rem; margin-top: 2px; }
-  .contact-info-list .c-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    margin-bottom: 2px;
-  }
-  .contact-info-list .c-val {
-    font-size: 0.95rem;
-    color: rgba(255,255,255,0.82);
-  }
-  .contact-form-area {
-    background: white;
-    padding: 40px 36px;
-    border-radius: 4px;
-    color: #222;
-  }
-  .contact-form-area h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: var(--blue);
-    margin-bottom: 6px;
-  }
-  .contact-form-area p.form-sub {
-    font-size: 0.88rem;
-    color: var(--gray);
-    margin-bottom: 24px;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: #0D1B3A;
-    color: rgba(255,255,255,0.6);
-    padding: 50px 40px 30px;
-  }
-  .footer-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  .footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 50px;
-    margin-bottom: 40px;
-  }
-  .footer-brand .brand-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 900;
-    color: white;
-    margin-bottom: 6px;
-  }
-  .footer-brand .brand-sub {
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gold-light);
-    margin-bottom: 16px;
-  }
-  .footer-brand p {
-    font-size: 0.88rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.55);
-  }
-  .footer-col h4 {
-    color: white;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-  }
-  .footer-col ul { list-style: none; }
-  .footer-col ul li { margin-bottom: 8px; }
-  .footer-col ul a {
-    color: rgba(255,255,255,0.55);
-    text-decoration: none;
-    font-size: 0.88rem;
-    transition: color 0.2s;
-  }
-  .footer-col ul a:hover { color: var(--gold-light); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding-top: 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.8rem;
-  }
-  .footer-stripes {
-    display: flex;
-    gap: 4px;
-  }
-  .footer-stripes span {
-    display: block;
-    width: 30px;
-    height: 4px;
-    border-radius: 2px;
-  }
-  .stripe-red { background: var(--red); }
-  .stripe-white { background: rgba(255,255,255,0.7); }
-  .stripe-blue { background: var(--blue-mid); }
-
-  /* ── MOBILE ── */
-  @media (max-width: 900px) {
-    .nav-links { display: none; }
-    .hero-content { grid-template-columns: 1fr; }
-    .hero-emblem-large { display: none; }
-    .about-grid,
-    .membership-grid,
-    .contact-grid { grid-template-columns: 1fr; }
-    .meetings-grid { grid-template-columns: 1fr; }
-    .news-grid { grid-template-columns: 1fr; }
-    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .event-item { grid-template-columns: 70px 1fr; }
-    .event-tag { display: none; }
-    .top-bar { display: none; }
-  }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .hero-content { animation: fadeUp 0.7s ease both; }
-  .hero h1 { animation: fadeUp 0.7s 0.1s ease both; }
-  .hero-desc { animation: fadeUp 0.7s 0.2s ease both; }
-  .hero-buttons { animation: fadeUp 0.7s 0.3s ease both; }
-</style>
+<title>Home | American Legion Women's Post 644</title>
+<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
@@ -817,11 +14,10 @@
   <span>📞 <a href="tel:+15551234567">(555) 123-4567</a> &nbsp;|&nbsp; ✉️ <a href="mailto:info@womenspost644.org">info@womenspost644.org</a></span>
 </div>
 
-<!-- NAVIGATION -->
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">
-      <!-- American Legion Emblem SVG -->
+<!-- SITE HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="nav-logo">
       <svg class="nav-emblem" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
         <circle cx="50" cy="50" r="48" fill="#1C2F5E" stroke="#C9A84C" stroke-width="3"/>
         <text x="50" y="38" text-anchor="middle" font-family="serif" font-size="9" fill="#C9A84C" font-weight="bold">AMERICAN</text>
@@ -834,35 +30,80 @@
         <span class="post-sub">The American Legion</span>
       </div>
     </a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#meetings">Meetings</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#news">News</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
-      <li><a href="#membership" class="nav-cta">Join Us</a></li>
-    </ul>
+  </div>
+</header>
+
+<!-- TAB NAV (desktop) -->
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <a href="index.html" class="tab-link active">🏠 Home</a>
+    <a href="about.html" class="tab-link">About</a>
+    <a href="meetings.html" class="tab-link">Meetings</a>
+    <a href="events.html" class="tab-link">Events</a>
+    <a href="news.html" class="tab-link">News</a>
+    <a href="gallery.html" class="tab-link">Gallery</a>
+    <a href="contact.html" class="tab-link">Contact</a>
+    <a href="membership.html" class="tab-link join-btn">Join Us</a>
+  </div>
+  <!-- Mobile -->
+  <div class="mobile-topbar">
+    <span>Home</span>
+    <button class="hamburger" onclick="document.getElementById('mob-menu').classList.toggle('open')">☰</button>
+  </div>
+  <div class="mobile-menu" id="mob-menu">
+    <a href="index.html" class="tab-link active">🏠 Home</a>
+    <a href="about.html" class="tab-link">About</a>
+    <a href="meetings.html" class="tab-link">Meetings</a>
+    <a href="events.html" class="tab-link">Events</a>
+    <a href="news.html" class="tab-link">News</a>
+    <a href="gallery.html" class="tab-link">Gallery</a>
+    <a href="contact.html" class="tab-link">Contact</a>
+    <a href="membership.html" class="tab-link join-btn">Join Us</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero stars-bg">
+<!-- PAGE CONTENT -->
+<main class="page-content">
+
+<style>
+  .hero { background:linear-gradient(160deg,#1C2F5E 0%,#2A4080 45%,#3D5A99 100%); color:white; position:relative; overflow:hidden; padding:90px 40px 80px; min-height:500px; display:flex; align-items:center; }
+  .hero::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.08) 1px,transparent 1px); background-size:30px 30px; }
+  .hero::after { content:''; position:absolute; bottom:0;left:0;right:0; height:5px; background:linear-gradient(90deg,#B22234 33%,white 33%,white 66%,#B22234 66%); }
+  .hero-stripe-top { position:absolute; top:0;left:0;right:0; height:5px; background:linear-gradient(90deg,#B22234 33%,white 33%,white 66%,#B22234 66%); }
+  .hero-content { max-width:1200px; margin:0 auto; width:100%; position:relative; z-index:2; display:grid; grid-template-columns:1fr auto; gap:60px; align-items:center; }
+  .hero-badge { display:inline-block; background:#B22234; color:white; font-size:0.72rem; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:5px 16px; margin-bottom:20px; clip-path:polygon(0 0,calc(100% - 8px) 0,100% 50%,calc(100% - 8px) 100%,0 100%); }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.4rem,5vw,4rem); font-weight:900; line-height:1.05; margin-bottom:10px; }
+  .hero h1 em { font-style:italic; color:#E8C96A; }
+  .hero-subtitle { font-size:1rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.65); margin-bottom:24px; font-weight:300; }
+  .hero-desc { font-size:1.1rem; line-height:1.7; color:rgba(255,255,255,0.85); max-width:560px; margin-bottom:36px; }
+  .hero-buttons { display:flex; gap:16px; flex-wrap:wrap; }
+  .hero-emblem { width:220px; height:220px; opacity:0.18; filter:brightness(10); }
+  .mission-strip { background:#B22234; color:white; text-align:center; padding:22px 40px; }
+  .mission-strip p { font-family:'Playfair Display',serif; font-style:italic; font-size:1.1rem; }
+  .mission-strip strong { font-style:normal; color:#E8C96A; }
+  .quicklinks-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:10px; }
+  .quicklink-card { background:white; border-top:4px solid #B22234; padding:28px 24px; text-align:center; transition:all 0.22s; box-shadow:0 2px 12px rgba(0,0,0,0.06); border-radius:0 0 4px 4px; text-decoration:none; display:block; color:inherit; }
+  .quicklink-card:hover { transform:translateY(-4px); box-shadow:0 8px 28px rgba(178,34,52,0.13); }
+  .quicklink-card .ql-icon { font-size:2.2rem; margin-bottom:12px; }
+  .quicklink-card h3 { font-family:'Playfair Display',serif; font-size:1.1rem; color:#1C2F5E; margin-bottom:6px; }
+  .quicklink-card p { font-size:0.88rem; color:#6B6B6B; line-height:1.5; }
+  @media (max-width:900px) { .hero-content { grid-template-columns:1fr; } .hero-emblem { display:none; } .quicklinks-grid { grid-template-columns:1fr 1fr; } }
+  @media (max-width:600px) { .quicklinks-grid { grid-template-columns:1fr; } .hero { padding:60px 20px; } }
+</style>
+<section class="hero">
   <div class="hero-stripe-top"></div>
   <div class="hero-content">
     <div>
       <div class="hero-badge">Est. Post 644 &mdash; All Women's Post</div>
       <h1>Serving Those<br/>Who <em>Served</em></h1>
       <p class="hero-subtitle">The American Legion &mdash; Women's Post 644</p>
-      <p class="hero-desc">
-        We are a proud all-women's post of The American Legion, united in our commitment to honoring veterans, supporting our community, and carrying forward the values of service, patriotism, and fellowship.
-      </p>
+      <p class="hero-desc">We are a proud all-women's post of The American Legion, united in our commitment to honoring veterans, supporting our community, and carrying forward the values of service, patriotism, and fellowship.</p>
       <div class="hero-buttons">
-        <a href="#membership" class="btn-primary">Join Our Post</a>
-        <a href="#about" class="btn-outline">Learn More</a>
+        <a href="membership.html" class="btn-primary">Join Our Post</a>
+        <a href="about.html" class="btn-outline">Learn More</a>
       </div>
     </div>
-    <svg class="hero-emblem-large" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="hero-emblem" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
       <circle cx="50" cy="50" r="48" fill="none" stroke="white" stroke-width="2"/>
       <text x="50" y="38" text-anchor="middle" font-family="serif" font-size="9" fill="white" font-weight="bold">AMERICAN</text>
       <text x="50" y="55" text-anchor="middle" font-family="serif" font-size="24" fill="white" font-weight="bold">⚜</text>
@@ -871,360 +112,26 @@
     </svg>
   </div>
 </section>
-
-<!-- MISSION STRIP -->
 <div class="mission-strip">
   <p>"For God and <strong>Country</strong> &mdash; Veterans, Community, and <strong>Service</strong> above all."</p>
 </div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-inner">
-    <div class="about-grid">
-      <div class="about-text">
-        <div class="section-label">Our Story</div>
-        <h2 class="section-title">About Women's Post 644</h2>
-        <div class="section-rule"></div>
-        <p>
-          Women's Post 644 is one of the nation's proud all-women posts of The American Legion — an organization founded on the principles of patriotism, honor, and service to our veterans and community.
-        </p>
-        <p>
-          Our members are veterans and patriots who continue to serve long after their military careers have ended. From advocating for veterans' benefits to volunteering in our community, we are committed to making a difference every day.
-        </p>
-        <p>
-          Whether you're a veteran looking for a community of fellow service members, or someone who wants to support those who served, we welcome you to join our growing family.
-        </p>
-        <p style="font-style:italic; color: var(--gray); font-size:0.9rem;">
-          📍 <strong>[Update with your city, state]</strong> &mdash; <em>Replace this text with your post's real history and founding story.</em>
-        </p>
-      </div>
-      <div class="about-stats">
-        <div class="stat-card">
-          <div class="stat-num">644</div>
-          <div class="stat-label">Post Number</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">★</div>
-          <div class="stat-label">All Women's Post</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">100+</div>
-          <div class="stat-label">Members Strong</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-num">Est.</div>
-          <div class="stat-label">[Founding Year]</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MEETINGS -->
-<section id="meetings">
-  <div class="section-inner">
-    <div class="section-label">Come See Us</div>
-    <h2 class="section-title">Meetings & Schedule</h2>
+<div class="section-pad" style="background:#F4F1EB;">
+  <div class="constrain">
+    <div class="section-label">Explore the Site</div>
+    <h2 class="section-title">What Would You Like to Do?</h2>
     <div class="section-rule"></div>
-    <div class="meetings-grid">
-      <div class="meeting-card">
-        <div class="meeting-icon">📋</div>
-        <h3>General Membership Meeting</h3>
-        <p class="meeting-time">[Day] of the Month &mdash; [Time]</p>
-        <p>Our monthly general meeting where all members are welcome. We discuss post business, upcoming events, and community initiatives.</p>
-      </div>
-      <div class="meeting-card">
-        <div class="meeting-icon">👥</div>
-        <h3>Executive Committee Meeting</h3>
-        <p class="meeting-time">[Day] of the Month &mdash; [Time]</p>
-        <p>Executive officers and committee chairs meet to plan post activities and manage operations.</p>
-      </div>
-      <div class="meeting-card">
-        <div class="meeting-icon">🤝</div>
-        <h3>Community & Events Planning</h3>
-        <p class="meeting-time">[Day] of the Month &mdash; [Time]</p>
-        <p>Join us to help plan community service events, fundraisers, and veteran support programs throughout the year.</p>
-      </div>
-    </div>
-    <div class="meeting-address">
-      <div class="addr-icon">📍</div>
-      <div>
-        <h4>Our Meeting Location</h4>
-        <p>[Meeting Hall Name] &mdash; [Street Address], [City], [State] [ZIP] &mdash; All members and guests welcome!</p>
-      </div>
+    <div class="quicklinks-grid">
+      <a href="about.html" class="quicklink-card"><div class="ql-icon">🏛️</div><h3>Our Story</h3><p>Learn about Women's Post 644, our history, and our mission to serve veterans and community.</p></a>
+      <a href="meetings.html" class="quicklink-card"><div class="ql-icon">📋</div><h3>Meeting Schedule</h3><p>Find out when and where we meet each month. All members and prospective members welcome.</p></a>
+      <a href="events.html" class="quicklink-card"><div class="ql-icon">📅</div><h3>Upcoming Events</h3><p>See what's coming up — from community service days to ceremonies and fundraisers.</p></a>
+      <a href="news.html" class="quicklink-card"><div class="ql-icon">📰</div><h3>News &amp; Announcements</h3><p>Stay up to date with the latest news from the Post and the American Legion community.</p></a>
+      <a href="gallery.html" class="quicklink-card"><div class="ql-icon">📷</div><h3>Photo Gallery</h3><p>Browse photos from our events, ceremonies, and community service activities.</p></a>
+      <a href="membership.html" class="quicklink-card"><div class="ql-icon">⭐</div><h3>Join the Post</h3><p>Interested in joining? Learn about eligibility and request membership information today.</p></a>
     </div>
   </div>
-</section>
+</div>
 
-<!-- MEMBERSHIP -->
-<section id="membership">
-  <div class="section-inner">
-    <div class="membership-grid">
-      <div class="membership-text">
-        <div class="section-label">Become a Member</div>
-        <h2 class="section-title">Join Women's Post 644</h2>
-        <div class="section-rule" style="background: linear-gradient(90deg, var(--gold-light), var(--gold));"></div>
-        <p>
-          The American Legion is open to veterans who served honorably in the U.S. Armed Forces. As an all-women's post, we offer a unique community of fellowship, shared service, and sisterhood.
-        </p>
-        <p>
-          Annual membership dues support our programs for veterans, children's scholarships, community outreach, and more.
-        </p>
-        <h3 style="font-family: 'Playfair Display', serif; font-size:1.1rem; color: var(--gold-light); margin: 20px 0 10px;">Eligibility Requirements</h3>
-        <ul class="eligibility-list">
-          <li>U.S. Military veteran (any branch)</li>
-          <li>Served honorably during an eligible wartime period</li>
-          <li>U.S. citizen or U.S. national</li>
-          <li>Active duty service members are also eligible</li>
-        </ul>
-        <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); font-style:italic;">
-          Annual dues: $[Amount]/year &mdash; Contact us for details about family memberships and special rates.
-        </p>
-      </div>
-      <div class="membership-form-area">
-        <h3>Request Membership Info</h3>
-        <p class="form-sub">Fill out the form below and we'll be in touch with details on how to join.</p>
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" placeholder="Jane"/>
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" placeholder="Smith"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="jane@example.com"/>
-        </div>
-        <div class="form-group">
-          <label>Phone Number</label>
-          <input type="tel" placeholder="(555) 000-0000"/>
-        </div>
-        <div class="form-group">
-          <label>Branch of Service</label>
-          <select>
-            <option value="">Select branch...</option>
-            <option>Army</option>
-            <option>Navy</option>
-            <option>Marine Corps</option>
-            <option>Air Force</option>
-            <option>Coast Guard</option>
-            <option>Space Force</option>
-            <option>National Guard / Reserve</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Questions or Comments</label>
-          <textarea placeholder="Tell us a bit about yourself or ask any questions..."></textarea>
-        </div>
-        <button class="btn-submit" onclick="alert('Thank you! We\'ll be in touch soon. (Update this form to connect to a real email service.)')">Submit Interest Form</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- EVENTS -->
-<section id="events">
-  <div class="section-inner">
-    <div class="section-label">What's Coming Up</div>
-    <h2 class="section-title">Upcoming Events</h2>
-    <div class="section-rule"></div>
-    <div class="events-list">
-      <div class="event-item">
-        <div class="event-date"><div class="month">Apr</div><div class="day">7</div></div>
-        <div class="event-info">
-          <h3>April General Membership Meeting</h3>
-          <p>📍 [Meeting Hall] &nbsp;|&nbsp; 🕖 7:00 PM &nbsp;|&nbsp; All members welcome</p>
-        </div>
-        <span class="event-tag tag-meeting">Meeting</span>
-      </div>
-      <div class="event-item">
-        <div class="event-date"><div class="month">Apr</div><div class="day">19</div></div>
-        <div class="event-info">
-          <h3>Spring Fundraiser Dinner</h3>
-          <p>📍 [Location TBD] &nbsp;|&nbsp; 🕕 6:00 PM &nbsp;|&nbsp; Tickets: $[Price]</p>
-        </div>
-        <span class="event-tag tag-fundraiser">Fundraiser</span>
-      </div>
-      <div class="event-item">
-        <div class="event-date"><div class="month">May</div><div class="day">26</div></div>
-        <div class="event-info">
-          <h3>Memorial Day Ceremony &amp; Parade</h3>
-          <p>📍 [Local Cemetery / Town Square] &nbsp;|&nbsp; 🕙 10:00 AM &nbsp;|&nbsp; Open to the public</p>
-        </div>
-        <span class="event-tag tag-community">Community</span>
-      </div>
-      <div class="event-item">
-        <div class="event-date"><div class="month">Jun</div><div class="day">5</div></div>
-        <div class="event-info">
-          <h3>Member Appreciation Luncheon</h3>
-          <p>📍 [Meeting Hall] &nbsp;|&nbsp; 🕛 12:00 PM &nbsp;|&nbsp; Members &amp; guests</p>
-        </div>
-        <span class="event-tag tag-social">Social</span>
-      </div>
-      <div class="event-item">
-        <div class="event-date"><div class="month">Jun</div><div class="day">14</div></div>
-        <div class="event-info">
-          <h3>Flag Day Celebration</h3>
-          <p>📍 [Location TBD] &nbsp;|&nbsp; 🕑 2:00 PM &nbsp;|&nbsp; Open to the public</p>
-        </div>
-        <span class="event-tag tag-community">Community</span>
-      </div>
-    </div>
-    <p style="margin-top:24px; font-size:0.88rem; color:var(--gray); font-style:italic;">
-      📌 Replace these placeholder events with your actual post calendar. Dates and details can be updated anytime.
-    </p>
-  </div>
-</section>
-
-<!-- NEWS -->
-<section id="news">
-  <div class="section-inner">
-    <div class="section-label">Stay Informed</div>
-    <h2 class="section-title">News &amp; Announcements</h2>
-    <div class="section-rule"></div>
-    <div class="news-grid">
-      <div class="news-card">
-        <div class="news-img">📰</div>
-        <div class="news-body">
-          <div class="news-category">Announcement</div>
-          <h3>New Website Launched!</h3>
-          <p>Women's Post 644 is proud to unveil our new website. Stay connected with events, news, and membership info right here.</p>
-          <div class="news-date">March 2026</div>
-        </div>
-      </div>
-      <div class="news-card">
-        <div class="news-img">🎗️</div>
-        <div class="news-body">
-          <div class="news-category">Community Service</div>
-          <h3>[Placeholder: Community Event Recap]</h3>
-          <p>Replace with a recap of a recent community service event, donation drive, or volunteer effort your post completed.</p>
-          <div class="news-date">[Month Year]</div>
-        </div>
-      </div>
-      <div class="news-card">
-        <div class="news-img">⭐</div>
-        <div class="news-body">
-          <div class="news-category">Recognition</div>
-          <h3>[Placeholder: Member Spotlight]</h3>
-          <p>Highlight a member's service, achievement, or special recognition. This section is perfect for honoring your members.</p>
-          <div class="news-date">[Month Year]</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- GALLERY -->
-<section id="gallery">
-  <div class="section-inner">
-    <div class="section-label">Our Memories</div>
-    <h2 class="section-title">Photo Gallery</h2>
-    <div class="section-rule"></div>
-    <div class="gallery-note">
-      <div class="note-icon">📷</div>
-      <div>
-        <h4>Add Your Post's Photos Here</h4>
-        <p>Replace the placeholder tiles below with real photos from events, meetings, ceremonies, and community service. A web admin or the Netlify/GitHub Pages interface makes this easy to update.</p>
-      </div>
-    </div>
-    <div class="gallery-grid">
-      <div class="gallery-item">🎖️<span>Events</span></div>
-      <div class="gallery-item">🤝<span>Community</span></div>
-      <div class="gallery-item">🇺🇸<span>Ceremonies</span></div>
-      <div class="gallery-item">👥<span>Members</span></div>
-      <div class="gallery-item">🎗️<span>Fundraisers</span></div>
-      <div class="gallery-item">⭐<span>Awards</span></div>
-      <div class="gallery-item">🌺<span>Remembrance</span></div>
-      <div class="gallery-item">🏛️<span>History</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="section-inner">
-    <div class="contact-grid">
-      <div>
-        <div class="section-label">Get in Touch</div>
-        <h2 class="section-title">Contact Us</h2>
-        <div class="section-rule" style="background: linear-gradient(90deg, var(--gold-light), var(--gold));"></div>
-        <p style="color:rgba(255,255,255,0.75); line-height:1.7; margin-bottom:10px;">
-          We'd love to hear from you — whether you're a veteran interested in joining, a community partner, or just want to learn more about what we do.
-        </p>
-        <ul class="contact-info-list">
-          <li>
-            <span class="c-icon">📍</span>
-            <div>
-              <div class="c-label">Mailing Address</div>
-              <div class="c-val">[Street Address], [City], [State] [ZIP]</div>
-            </div>
-          </li>
-          <li>
-            <span class="c-icon">📞</span>
-            <div>
-              <div class="c-label">Phone</div>
-              <div class="c-val">(555) 123-4567</div>
-            </div>
-          </li>
-          <li>
-            <span class="c-icon">✉️</span>
-            <div>
-              <div class="c-label">Email</div>
-              <div class="c-val">info@womenspost644.org</div>
-            </div>
-          </li>
-          <li>
-            <span class="c-icon">🕗</span>
-            <div>
-              <div class="c-label">Office Hours</div>
-              <div class="c-val">[Days], [Time] &mdash; or by appointment</div>
-            </div>
-          </li>
-        </ul>
-        <p style="font-size:0.82rem; color:rgba(255,255,255,0.45); font-style:italic;">
-          Follow us on Facebook: <a href="#" style="color:var(--gold-light);">[Your Facebook Page]</a>
-        </p>
-      </div>
-      <div class="contact-form-area">
-        <h3>Send Us a Message</h3>
-        <p class="form-sub">We typically respond within 2–3 business days.</p>
-        <div class="form-row">
-          <div class="form-group">
-            <label>First Name</label>
-            <input type="text" placeholder="Jane"/>
-          </div>
-          <div class="form-group">
-            <label>Last Name</label>
-            <input type="text" placeholder="Smith"/>
-          </div>
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="jane@example.com"/>
-        </div>
-        <div class="form-group">
-          <label>Subject</label>
-          <select>
-            <option>General Inquiry</option>
-            <option>Membership Question</option>
-            <option>Event Information</option>
-            <option>Partnership / Sponsorship</option>
-            <option>Media Inquiry</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea placeholder="How can we help you?"></textarea>
-        </div>
-        <button class="btn-submit" onclick="alert('Thank you for your message! We\'ll get back to you soon.\n\n(Connect this form to Formspree.io or Netlify Forms for real email delivery — it\'s free!)')">Send Message</button>
-      </div>
-    </div>
-  </div>
-</section>
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -1235,43 +142,30 @@
         <div class="brand-sub">The American Legion</div>
         <p>An all-women's post dedicated to honoring those who served, supporting our veterans, and strengthening our community through service and fellowship.</p>
       </div>
-      <div class="footer-col">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#meetings">Meetings</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#news">News</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Get Involved</h4>
-        <ul>
-          <li><a href="#membership">Join the Post</a></li>
-          <li><a href="#contact">Volunteer</a></li>
-          <li><a href="#contact">Donate</a></li>
-          <li><a href="#contact">Sponsor an Event</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Resources</h4>
-        <ul>
-          <li><a href="https://www.legion.org" target="_blank">American Legion National</a></li>
-          <li><a href="https://www.va.gov" target="_blank">VA Benefits</a></li>
-          <li><a href="#contact">Contact Us</a></li>
-        </ul>
-      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="meetings.html">Meetings</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Get Involved</h4><ul>
+        <li><a href="membership.html">Join the Post</a></li>
+        <li><a href="contact.html">Volunteer</a></li>
+        <li><a href="contact.html">Donate</a></li>
+        <li><a href="contact.html">Sponsor an Event</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Resources</h4><ul>
+        <li><a href="https://www.legion.org" target="_blank">American Legion National</a></li>
+        <li><a href="https://www.va.gov" target="_blank">VA Benefits</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul></div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 American Legion Women's Post 644. All rights reserved.</span>
       <div class="footer-stripes">
-        <span class="stripe-red"></span>
-        <span class="stripe-white"></span>
-        <span class="stripe-blue"></span>
-        <span class="stripe-red"></span>
-        <span class="stripe-white"></span>
-        <span class="stripe-blue"></span>
+        <span class="stripe-red"></span><span class="stripe-white"></span><span class="stripe-blue"></span>
+        <span class="stripe-red"></span><span class="stripe-white"></span><span class="stripe-blue"></span>
       </div>
     </div>
   </div>

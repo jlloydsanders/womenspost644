@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Events | American Legion Women's Post 644</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <span>🇺🇸 American Legion &mdash; Department of [Your State] &mdash; District [#]</span>
+  <span>📞 <a href="tel:+15551234567">(555) 123-4567</a> &nbsp;|&nbsp; ✉️ <a href="mailto:info@womenspost644.org">info@womenspost644.org</a></span>
+</div>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-emblem" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="#1C2F5E" stroke="#C9A84C" stroke-width="3"/>
+        <text x="50" y="38" text-anchor="middle" font-family="serif" font-size="9" fill="#C9A84C" font-weight="bold">AMERICAN</text>
+        <text x="50" y="50" text-anchor="middle" font-family="serif" font-size="18" fill="white" font-weight="bold">⚜</text>
+        <text x="50" y="65" text-anchor="middle" font-family="serif" font-size="9" fill="#C9A84C" font-weight="bold">LEGION</text>
+        <text x="50" y="76" text-anchor="middle" font-family="serif" font-size="7.5" fill="white">POST 644</text>
+      </svg>
+      <div class="nav-title">
+        <span class="post-name">Women's Post 644</span>
+        <span class="post-sub">The American Legion</span>
+      </div>
+    </a>
+  </div>
+</header>
+
+<!-- TAB NAV (desktop) -->
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <a href="index.html" class="tab-link">🏠 Home</a>
+    <a href="about.html" class="tab-link">About</a>
+    <a href="meetings.html" class="tab-link">Meetings</a>
+    <a href="events.html" class="tab-link active">Events</a>
+    <a href="news.html" class="tab-link">News</a>
+    <a href="gallery.html" class="tab-link">Gallery</a>
+    <a href="contact.html" class="tab-link">Contact</a>
+    <a href="membership.html" class="tab-link join-btn">Join Us</a>
+  </div>
+  <!-- Mobile -->
+  <div class="mobile-topbar">
+    <span>Events</span>
+    <button class="hamburger" onclick="document.getElementById('mob-menu').classList.toggle('open')">☰</button>
+  </div>
+  <div class="mobile-menu" id="mob-menu">
+    <a href="index.html" class="tab-link">🏠 Home</a>
+    <a href="about.html" class="tab-link">About</a>
+    <a href="meetings.html" class="tab-link">Meetings</a>
+    <a href="events.html" class="tab-link active">Events</a>
+    <a href="news.html" class="tab-link">News</a>
+    <a href="gallery.html" class="tab-link">Gallery</a>
+    <a href="contact.html" class="tab-link">Contact</a>
+    <a href="membership.html" class="tab-link join-btn">Join Us</a>
+  </div>
+</nav>
+
+<!-- PAGE CONTENT -->
+<main class="page-content">
+
+<style>
+  .event-item { display:grid; grid-template-columns:80px 1fr auto; gap:24px; align-items:center; background:white; padding:24px 28px; margin-bottom:12px; border-left:4px solid #B22234; box-shadow:0 2px 12px rgba(0,0,0,0.06); transition:all 0.2s; }
+  .event-item:hover { transform:translateX(4px); box-shadow:0 4px 20px rgba(0,0,0,0.1); }
+  .event-date { text-align:center; background:#1C2F5E; color:white; padding:10px 8px; border-radius:4px; min-width:70px; }
+  .event-date .month { font-size:0.7rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#E8C96A; }
+  .event-date .day { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; line-height:1; }
+  .event-info h3 { font-family:'Playfair Display',serif; font-size:1.15rem; color:#1C2F5E; margin-bottom:4px; }
+  .event-info p { font-size:0.88rem; color:#6B6B6B; }
+  .event-tag { font-size:0.72rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:4px 12px; border-radius:20px; }
+  .tag-meeting { background:#EEF2FF; color:#1C2F5E; } .tag-social { background:#FFF1F2; color:#B22234; }
+  .tag-community { background:#FFFBEB; color:#92400E; } .tag-fundraiser { background:#F0FDF4; color:#166534; }
+  @media (max-width:900px) { .event-item { grid-template-columns:70px 1fr; } .event-tag { display:none; } }
+</style>
+<div class="section-pad" style="background:#F4F1EB;">
+  <div class="constrain">
+    <div class="section-label">What's Coming Up</div>
+    <h2 class="section-title">Upcoming Events</h2>
+    <div class="section-rule"></div>
+    <div class="events-list">
+      <div class="event-item"><div class="event-date"><div class="month">Apr</div><div class="day">7</div></div><div class="event-info"><h3>April General Membership Meeting</h3><p>📍 [Meeting Hall] &nbsp;|&nbsp; 🕖 7:00 PM &nbsp;|&nbsp; All members welcome</p></div><span class="event-tag tag-meeting">Meeting</span></div>
+      <div class="event-item"><div class="event-date"><div class="month">Apr</div><div class="day">19</div></div><div class="event-info"><h3>Spring Fundraiser Dinner</h3><p>📍 [Location TBD] &nbsp;|&nbsp; 🕕 6:00 PM &nbsp;|&nbsp; Tickets: $[Price]</p></div><span class="event-tag tag-fundraiser">Fundraiser</span></div>
+      <div class="event-item"><div class="event-date"><div class="month">May</div><div class="day">26</div></div><div class="event-info"><h3>Memorial Day Ceremony &amp; Parade</h3><p>📍 [Local Cemetery / Town Square] &nbsp;|&nbsp; 🕙 10:00 AM &nbsp;|&nbsp; Open to the public</p></div><span class="event-tag tag-community">Community</span></div>
+      <div class="event-item"><div class="event-date"><div class="month">Jun</div><div class="day">5</div></div><div class="event-info"><h3>Member Appreciation Luncheon</h3><p>📍 [Meeting Hall] &nbsp;|&nbsp; 🕛 12:00 PM &nbsp;|&nbsp; Members &amp; guests</p></div><span class="event-tag tag-social">Social</span></div>
+      <div class="event-item"><div class="event-date"><div class="month">Jun</div><div class="day">14</div></div><div class="event-info"><h3>Flag Day Celebration</h3><p>📍 [Location TBD] &nbsp;|&nbsp; 🕑 2:00 PM &nbsp;|&nbsp; Open to the public</p></div><span class="event-tag tag-community">Community</span></div>
+    </div>
+    <p style="margin-top:24px; font-size:0.88rem; color:#6B6B6B; font-style:italic;">📌 Replace these placeholder events with your actual post calendar.</p>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">Women's Post 644</div>
+        <div class="brand-sub">The American Legion</div>
+        <p>An all-women's post dedicated to honoring those who served, supporting our veterans, and strengthening our community through service and fellowship.</p>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="meetings.html">Meetings</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Get Involved</h4><ul>
+        <li><a href="membership.html">Join the Post</a></li>
+        <li><a href="contact.html">Volunteer</a></li>
+        <li><a href="contact.html">Donate</a></li>
+        <li><a href="contact.html">Sponsor an Event</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Resources</h4><ul>
+        <li><a href="https://www.legion.org" target="_blank">American Legion National</a></li>
+        <li><a href="https://www.va.gov" target="_blank">VA Benefits</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 American Legion Women's Post 644. All rights reserved.</span>
+      <div class="footer-stripes">
+        <span class="stripe-red"></span><span class="stripe-white"></span><span class="stripe-blue"></span>
+        <span class="stripe-red"></span><span class="stripe-white"></span><span class="stripe-blue"></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

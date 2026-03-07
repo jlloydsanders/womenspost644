@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Contact | American Legion Women's Post 644</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <span>🇺🇸 American Legion &mdash; Department of [Your State] &mdash; District [#]</span>
+  <span>📞 <a href="tel:+15551234567">(555) 123-4567</a> &nbsp;|&nbsp; ✉️ <a href="mailto:info@womenspost644.org">info@womenspost644.org</a></span>
+</div>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-emblem" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="#1C2F5E" stroke="#C9A84C" stroke-width="3"/>
+        <text x="50" y="38" text-anchor="middle" font-family="serif" font-size="9" fill="#C9A84C" font-weight="bold">AMERICAN</text>
+        <text x="50" y="50" text-anchor="middle" font-family="serif" font-size="18" fill="white" font-weight="bold">⚜</text>
+        <text x="50" y="65" text-anchor="middle" font-family="serif" font-size="9" fill="#C9A84C" font-weight="bold">LEGION</text>
+        <text x="50" y="76" text-anchor="middle" font-family="serif" font-size="7.5" fill="white">POST 644</text>
+      </svg>
+      <div class="nav-title">
+        <span class="post-name">Women's Post 644</span>
+        <span class="post-sub">The American Legion</span>
+      </div>
+    </a>
+  </div>
+</header>
+
+<!-- TAB NAV (desktop) -->
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <a href="index.html" class="tab-link">🏠 Home</a>
+    <a href="about.html" class="tab-link">About</a>
+    <a href="meetings.html" class="tab-link">Meetings</a>
+    <a href="events.html" class="tab-link">Events</a>
+    <a href="news.html" class="tab-link">News</a>
+    <a href="gallery.html" class="tab-link">Gallery</a>
+    <a href="contact.html" class="tab-link active">Contact</a>
+    <a href="membership.html" class="tab-link join-btn">Join Us</a>
+  </div>
+  <!-- Mobile -->
+  <div class="mobile-topbar">
+    <span>Contact</span>
+    <button class="hamburger" onclick="document.getElementById('mob-menu').classList.toggle('open')">☰</button>
+  </div>
+  <div class="mobile-menu" id="mob-menu">
+    <a href="index.html" class="tab-link">🏠 Home</a>
+    <a href="about.html" class="tab-link">About</a>
+    <a href="meetings.html" class="tab-link">Meetings</a>
+    <a href="events.html" class="tab-link">Events</a>
+    <a href="news.html" class="tab-link">News</a>
+    <a href="gallery.html" class="tab-link">Gallery</a>
+    <a href="contact.html" class="tab-link active">Contact</a>
+    <a href="membership.html" class="tab-link join-btn">Join Us</a>
+  </div>
+</nav>
+
+<!-- PAGE CONTENT -->
+<main class="page-content">
+
+<style>
+  .contact-wrap { background:#1C2F5E; }
+  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  .contact-info-list { list-style:none; margin:24px 0; }
+  .contact-info-list li { display:flex; gap:16px; padding:16px 0; border-bottom:1px solid rgba(255,255,255,0.12); align-items:flex-start; }
+  .contact-info-list .c-icon { font-size:1.4rem; margin-top:2px; }
+  .contact-info-list .c-label { font-size:0.72rem; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#E8C96A; margin-bottom:2px; }
+  .contact-info-list .c-val { font-size:0.95rem; color:rgba(255,255,255,0.82); }
+  .form-area h3 { font-family:'Playfair Display',serif; font-size:1.4rem; color:#1C2F5E; margin-bottom:6px; }
+  @media (max-width:900px) { .contact-grid { grid-template-columns:1fr; } }
+</style>
+<div class="section-pad contact-wrap">
+  <div class="constrain">
+    <div class="contact-grid">
+      <div>
+        <div class="section-label section-label-gold">Get in Touch</div>
+        <h2 class="section-title section-title-white">Contact Us</h2>
+        <div class="section-rule section-rule-gold"></div>
+        <p style="color:rgba(255,255,255,0.75); line-height:1.7; margin-bottom:10px;">We'd love to hear from you — whether you're a veteran interested in joining, a community partner, or just want to learn more about what we do.</p>
+        <ul class="contact-info-list">
+          <li><span class="c-icon">📍</span><div><div class="c-label">Mailing Address</div><div class="c-val">[Street Address], [City], [State] [ZIP]</div></div></li>
+          <li><span class="c-icon">📞</span><div><div class="c-label">Phone</div><div class="c-val">(555) 123-4567</div></div></li>
+          <li><span class="c-icon">✉️</span><div><div class="c-label">Email</div><div class="c-val">info@womenspost644.org</div></div></li>
+          <li><span class="c-icon">🕗</span><div><div class="c-label">Office Hours</div><div class="c-val">[Days], [Time] &mdash; or by appointment</div></div></li>
+        </ul>
+        <p style="font-size:0.82rem; color:rgba(255,255,255,0.45); font-style:italic;">Follow us on Facebook: <a href="#" style="color:#E8C96A;">[Your Facebook Page]</a></p>
+      </div>
+      <div class="form-area">
+        <h3>Send Us a Message</h3>
+        <p class="form-sub">We typically respond within 2–3 business days.</p>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane"/></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"/></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@example.com"/></div>
+        <div class="form-group"><label>Subject</label>
+          <select><option>General Inquiry</option><option>Membership Question</option><option>Event Information</option><option>Partnership / Sponsorship</option><option>Media Inquiry</option><option>Other</option></select>
+        </div>
+        <div class="form-group"><label>Message</label><textarea placeholder="How can we help you?"></textarea></div>
+        <button class="btn-submit" onclick="alert('Thank you for your message! We'll get back to you soon.')">Send Message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">Women's Post 644</div>
+        <div class="brand-sub">The American Legion</div>
+        <p>An all-women's post dedicated to honoring those who served, supporting our veterans, and strengthening our community through service and fellowship.</p>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="meetings.html">Meetings</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Get Involved</h4><ul>
+        <li><a href="membership.html">Join the Post</a></li>
+        <li><a href="contact.html">Volunteer</a></li>
+        <li><a href="contact.html">Donate</a></li>
+        <li><a href="contact.html">Sponsor an Event</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Resources</h4><ul>
+        <li><a href="https://www.legion.org" target="_blank">American Legion National</a></li>
+        <li><a href="https://www.va.gov" target="_blank">VA Benefits</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 American Legion Women's Post 644. All rights reserved.</span>
+      <div class="footer-stripes">
+        <span class="stripe-red"></span><span class="stripe-white"></span><span class="stripe-blue"></span>
+        <span class="stripe-red"></span><span class="stripe-white"></span><span class="stripe-blue"></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
