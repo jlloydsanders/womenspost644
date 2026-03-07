@@ -12,23 +12,26 @@ const CATEGORY_META = {
   remembrance: { label: 'Remembrance', icon: '🌺', color: '#333333' },
 };
 
-const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.gif', '.webp']);
+const IMAGE_EXTENSIONS = new Set(['.jpg','.jpeg','.png','.gif','.webp']);
 
 exports.handler = async () => {
-  // Netlify sets cwd to /var/task (repo root)
-  // Try every likely location for the images folder
+  // __dirname = /var/task (which is netlify/functions/ at runtime)
+  // So we walk UP from __dirname to find the repo root where images/ lives:
+  //   __dirname         = .../netlify/functions
+  //   one up            = .../netlify
+  //   two up            = repo root  <-- images/ should be here
+  const repoRoot = path.resolve(__dirname, '..', '..');
+
+  // Build candidate list — repo root first, then any subfolders inside it
   const candidatePaths = [
-    path.join(process.cwd(), 'images'),                        // repo root  /var/task/images
-    path.join(process.cwd(), 'post644-multipage', 'images'),   // subfolder  /var/task/post644-multipage/images
-    '/var/task/images',                                         // absolute fallback
+    path.join(repoRoot, 'images'),
   ];
 
-  // Also auto-scan for any subfolder that contains an images/ directory
+  // Also check one level deeper in case files are in a subfolder
   try {
-    const topLevel = fs.readdirSync(process.cwd(), { withFileTypes: true })
-      .filter(d => d.isDirectory() && !d.name.startsWith('.') && !d.name.startsWith('netlify'))
-      .map(d => path.join(process.cwd(), d.name, 'images'));
-    candidatePaths.push(...topLevel);
+    fs.readdirSync(repoRoot, { withFileTypes: true })
+      .filter(d => d.isDirectory() && !d.name.startsWith('.') && d.name !== 'netlify')
+      .forEach(d => candidatePaths.push(path.join(repoRoot, d.name, 'images')));
   } catch (_) {}
 
   let imagesRoot = null;
@@ -41,22 +44,24 @@ exports.handler = async () => {
     } catch (_) {}
   }
 
-  // Log repo root contents to help diagnose structure
+  // Debug info
   let rootContents = [];
-  try { rootContents = fs.readdirSync(process.cwd()); } catch (_) {}
+  try { rootContents = fs.readdirSync(repoRoot); } catch (_) {}
 
-  console.log('cwd:', process.cwd());
-  console.log('repo root contents:', rootContents);
-  console.log('imagesRoot resolved:', imagesRoot);
+  console.log('__dirname  :', __dirname);
+  console.log('repoRoot   :', repoRoot);
+  console.log('rootContents:', rootContents);
+  console.log('imagesRoot :', imagesRoot);
 
   if (!imagesRoot) {
     return respond(200, {
       categories: [],
       _debug: {
-        cwd: process.cwd(),
+        dirname: __dirname,
+        repoRoot,
         rootContents,
         tried: candidatePaths,
-        message: 'images/ folder not found — check repo structure above'
+        message: 'images/ folder not found'
       }
     });
   }
@@ -70,18 +75,17 @@ exports.handler = async () => {
       .sort();
 
     for (const folderName of folders) {
-      const folderPath = path.join(imagesRoot, folderName);
       const meta = CATEGORY_META[folderName] || {
         label: folderName.charAt(0).toUpperCase() + folderName.slice(1),
         icon:  '📷',
         color: '#1C2F5E',
       };
 
-      const photos = fs.readdirSync(folderPath)
+      const photos = fs.readdirSync(path.join(imagesRoot, folderName))
         .filter(f => !f.startsWith('.') && IMAGE_EXTENSIONS.has(path.extname(f).toLowerCase()))
         .sort()
         .map(filename => ({
-          file: filename,
+          file:    filename,
           caption: filename
             .replace(/\.[^.]+$/, '')
             .replace(/[-_]/g, ' ')
@@ -93,7 +97,7 @@ exports.handler = async () => {
       }
     }
 
-    console.log(`Found ${categories.length} categories`);
+    console.log(`Returning ${categories.length} categories`);
     return respond(200, { categories });
 
   } catch (err) {
