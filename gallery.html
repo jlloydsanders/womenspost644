@@ -5,11 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Gallery | American Legion Women's Post 644</title>
 <link rel="stylesheet" href="style.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
 <style>
-/* ── GALLERY PAGE ── */
 .gallery-section { background: #F4F1EB; min-height: 60vh; }
 
-/* FILTER BAR */
 .filter-bar { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
 .filter-btn {
   background: white; border: 2px solid #E8E4DC; color: #1C2F5E;
@@ -20,20 +19,15 @@
 .filter-btn:hover { border-color: #B22234; color: #B22234; }
 .filter-btn.active { background: #B22234; border-color: #B22234; color: white; }
 
-/* CATEGORY GRID — 4 tiles per row */
 .cat-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 16px;
 }
 
-/* CATEGORY TILE */
 .cat-tile {
-  position: relative;
-  aspect-ratio: 1;
-  border-radius: 8px;
-  overflow: hidden;
-  cursor: pointer;
+  position: relative; aspect-ratio: 1;
+  border-radius: 8px; overflow: hidden; cursor: pointer;
   background: #2A4080;
   box-shadow: 0 3px 14px rgba(0,0,0,0.15);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -42,17 +36,12 @@
   transform: translateY(-6px) scale(1.02);
   box-shadow: 0 14px 36px rgba(0,0,0,0.28);
 }
-
-/* Cover image — first photo in folder */
 .cat-tile .tile-img {
   position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
+  width: 100%; height: 100%; object-fit: cover;
   transition: transform 0.35s ease;
 }
 .cat-tile:hover .tile-img { transform: scale(1.07); }
-
-/* Dark gradient overlay — always present, stronger on hover */
 .cat-tile .tile-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.18) 55%, transparent 100%);
@@ -61,50 +50,35 @@
 .cat-tile:hover .tile-overlay {
   background: linear-gradient(to top, rgba(0,0,0,0.80) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.10) 100%);
 }
-
-/* Bottom label bar */
 .tile-label {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 14px 16px 12px;
-  z-index: 2;
+  padding: 14px 16px 12px; z-index: 2;
 }
 .tile-label .cat-name {
   font-family: 'Source Sans 3', sans-serif;
   font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: white;
+  letter-spacing: 0.16em; text-transform: uppercase; color: white;
 }
-.tile-label .cat-count {
-  font-size: 0.68rem; color: rgba(255,255,255,0.65);
-  margin-top: 1px;
-}
-
-/* Hover: show "View Photos" pill */
+.tile-label .cat-count { font-size: 0.68rem; color: rgba(255,255,255,0.65); margin-top: 1px; }
 .view-pill {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%) scale(0.8);
-  background: rgba(178,34,52,0.92);
-  color: white; border-radius: 30px;
+  background: rgba(178,34,52,0.92); color: white; border-radius: 30px;
   font-family: 'Source Sans 3', sans-serif;
   font-size: 0.75rem; font-weight: 700;
   letter-spacing: 0.1em; text-transform: uppercase;
   padding: 9px 22px; white-space: nowrap;
-  opacity: 0; transition: all 0.22s ease;
-  z-index: 3;
+  opacity: 0; transition: all 0.22s ease; z-index: 3;
 }
 .cat-tile:hover .view-pill { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 
-/* hidden for filter */
-.cat-tile.hidden { display: none; }
-
-/* ── LIGHTBOX MODAL ── */
+/* LIGHTBOX */
 #lb-modal {
   display: none; position: fixed; inset: 0; z-index: 9000;
   background: rgba(0,0,0,0.94);
   flex-direction: column; align-items: center; justify-content: center;
 }
 #lb-modal.open { display: flex; }
-
 #lb-header {
   position: absolute; top: 0; left: 0; right: 0;
   display: flex; align-items: center; justify-content: space-between;
@@ -112,33 +86,23 @@
   background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
   z-index: 2;
 }
-#lb-title {
-  font-family: 'Playfair Display', serif; font-size: 1.1rem;
-  color: white; font-weight: 700;
-}
+#lb-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: white; font-weight: 700; }
 #lb-counter { font-size: 0.82rem; color: rgba(255,255,255,0.6); }
 #lb-close {
   background: none; border: none; color: white; font-size: 1.8rem;
-  cursor: pointer; line-height: 1; padding: 4px 8px;
-  transition: color 0.2s;
+  cursor: pointer; line-height: 1; padding: 4px 8px; transition: color 0.2s;
 }
 #lb-close:hover { color: #E8C96A; }
-
-/* Main image area */
 #lb-stage {
   position: relative; display: flex; align-items: center; justify-content: center;
   width: 100%; height: 100%; padding: 70px 80px 90px;
 }
 #lb-img {
-  max-width: 100%; max-height: 100%;
-  object-fit: contain;
-  border-radius: 4px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+  max-width: 100%; max-height: 100%; object-fit: contain;
+  border-radius: 4px; box-shadow: 0 8px 40px rgba(0,0,0,0.6);
   transition: opacity 0.18s ease;
 }
 #lb-img.fading { opacity: 0; }
-
-/* Prev / Next arrows */
 .lb-arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
   background: rgba(255,255,255,0.1); border: 2px solid rgba(255,255,255,0.25);
@@ -149,25 +113,17 @@
 .lb-arrow:hover { background: #B22234; border-color: #B22234; }
 #lb-prev { left: 18px; }
 #lb-next { right: 18px; }
-
-/* Caption / thumbnail strip */
 #lb-footer {
   position: absolute; bottom: 0; left: 0; right: 0;
   padding: 12px 24px 16px;
   background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
   z-index: 2;
 }
-#lb-caption {
-  color: rgba(255,255,255,0.85); font-size: 0.9rem;
-  text-align: center; margin-bottom: 10px;
-}
-#lb-thumbs {
-  display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
-}
+#lb-caption { color: rgba(255,255,255,0.85); font-size: 0.9rem; text-align: center; margin-bottom: 10px; }
+#lb-thumbs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
 .lb-thumb {
-  width: 52px; height: 52px; border-radius: 4px;
-  object-fit: cover; cursor: pointer; opacity: 0.5;
-  border: 2px solid transparent; transition: all 0.18s;
+  width: 52px; height: 52px; border-radius: 4px; object-fit: cover;
+  cursor: pointer; opacity: 0.5; border: 2px solid transparent; transition: all 0.18s;
 }
 .lb-thumb:hover { opacity: 0.85; }
 .lb-thumb.active { opacity: 1; border-color: #E8C96A; }
@@ -183,13 +139,11 @@
 </head>
 <body>
 
-<!-- TOP BAR -->
 <div class="top-bar">
   <span>🇺🇸 American Legion &mdash; Department of [Your State] &mdash; District [#]</span>
-  <span>📞 <a href="tel:+15551234567">(555) 123-4567</a> &nbsp;|&nbsp; ✉️ <a href="/cdn-cgi/l/email-protection#dab3b4bcb59aadb5b7bfb4a9aab5a9aeeceeeef4b5a8bd"><span class="__cf_email__" data-cfemail="b3daddd5dcf3c4dcded6ddc0c3dcc0c78587879ddcc1d4">[email&#160;protected]</span></a></span>
+  <span>📞 <a href="tel:+15551234567">(555) 123-4567</a> &nbsp;|&nbsp; ✉️ <a href="mailto:info@womenspost644.org">info@womenspost644.org</a></span>
 </div>
 
-<!-- SITE HEADER -->
 <header class="site-header">
   <div class="header-inner">
     <a href="index.html" class="nav-logo">
@@ -208,7 +162,6 @@
   </div>
 </header>
 
-<!-- TAB NAV -->
 <nav class="tab-nav">
   <div class="tab-nav-inner">
     <a href="index.html" class="tab-link">🏠 Home</a>
@@ -236,55 +189,43 @@
   </div>
 </nav>
 
-<!-- PAGE CONTENT -->
 <main class="page-content">
 <div class="section-pad gallery-section">
   <div class="constrain">
     <div class="section-label">Our Memories</div>
     <h2 class="section-title">Photo Gallery</h2>
     <div class="section-rule"></div>
-
-    <!-- FILTER BAR (populated by JS) -->
     <div class="filter-bar" id="filter-bar"></div>
-
-    <!-- CATEGORY TILES (populated by JS) -->
     <div class="cat-grid" id="cat-grid">
-      <div id="gallery-status" style="grid-column:1/-1; text-align:center; padding:60px; color:#999;">
-        <div style="font-size:2rem; margin-bottom:12px;">⏳</div>
+      <div id="gallery-status" style="grid-column:1/-1;text-align:center;padding:60px;color:#999;">
+        <div style="font-size:2rem;margin-bottom:12px;">⏳</div>
         Loading gallery…
       </div>
     </div>
-
-    <p style="margin-top:20px; font-size:0.8rem; color:#aaa; font-style:italic; text-align:right;">
-      📷 To add photos: upload images to the <code>images/[category]/</code> folder on GitHub, then update <code>photos.json</code>.
+    <p style="margin-top:20px;font-size:0.8rem;color:#aaa;font-style:italic;text-align:right;">
+      📷 To add photos: upload images to the <code>images/[category]/</code> folder on GitHub. They appear automatically.
     </p>
   </div>
 </div>
 </main>
 
-<!-- ── LIGHTBOX MODAL ── -->
-<div id="lb-modal" role="dialog" aria-modal="true" aria-label="Photo viewer">
+<!-- LIGHTBOX -->
+<div id="lb-modal" role="dialog" aria-modal="true">
   <div id="lb-header">
-    <div>
-      <div id="lb-title"></div>
-      <div id="lb-counter"></div>
-    </div>
-    <button id="lb-close" onclick="closeLightbox()" title="Close">✕</button>
+    <div><div id="lb-title"></div><div id="lb-counter"></div></div>
+    <button id="lb-close" onclick="closeLightbox()">✕</button>
   </div>
-
   <div id="lb-stage">
-    <button class="lb-arrow" id="lb-prev" onclick="stepPhoto(-1)" title="Previous">&#8249;</button>
+    <button class="lb-arrow" id="lb-prev" onclick="stepPhoto(-1)">&#8249;</button>
     <img id="lb-img" src="" alt="Gallery photo"/>
-    <button class="lb-arrow" id="lb-next" onclick="stepPhoto(1)" title="Next">&#8250;</button>
+    <button class="lb-arrow" id="lb-next" onclick="stepPhoto(1)">&#8250;</button>
   </div>
-
   <div id="lb-footer">
     <div id="lb-caption"></div>
     <div id="lb-thumbs"></div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
@@ -322,121 +263,106 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── STATE ──────────────────────────────────────────────────────────────────
-let allCategories = [];
-let currentPhotos = [];
-let currentIndex  = 0;
-let currentCatLabel = '';
+<script>
+var allCategories = [];
+var currentPhotos = [];
+var currentIndex  = 0;
+var currentCatId  = '';
 
-// ── BOOT: load photos.json ─────────────────────────────────────────────────
-// Fetch with a timeout so we never hang forever
-function loadPhotos(url, timeoutMs = 6000) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeoutMs);
-  return fetch(url, { signal: controller.signal })
-    .then(r => { clearTimeout(timer); if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .catch(e => { clearTimeout(timer); throw e; });
+// ── LOAD ─────────────────────────────────────────────────────────────────────
+function loadPhotos(url) {
+  return fetch(url).then(function(r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  });
 }
 
 function showStatus(icon, msg, sub) {
   document.getElementById('cat-grid').innerHTML =
-    `<div style="grid-column:1/-1;text-align:center;padding:60px;color:#999;">
-      <div style="font-size:2.5rem;margin-bottom:12px;">${icon}</div>
-      <div style="font-size:1rem;font-weight:600;color:#555;margin-bottom:6px;">${msg}</div>
-      ${sub ? `<div style="font-size:0.82rem;">${sub}</div>` : ''}
-    </div>`;
+    '<div style="grid-column:1/-1;text-align:center;padding:60px;color:#999;">' +
+    '<div style="font-size:2.5rem;margin-bottom:12px;">' + icon + '</div>' +
+    '<div style="font-size:1rem;font-weight:600;color:#555;margin-bottom:6px;">' + msg + '</div>' +
+    (sub ? '<div style="font-size:0.82rem;">' + sub + '</div>' : '') +
+    '</div>';
 }
 
-// Try Netlify function first, fall back to photos.json
 loadPhotos('/.netlify/functions/list-photos')
-  .catch(() => {
-    console.log('Netlify function unavailable, trying photos.json fallback...');
-    return loadPhotos('photos.json');
-  })
-  .then(data => {
+  .then(function(data) {
     if (!data.categories || data.categories.length === 0) {
-      showStatus('📷', 'No photos yet', 'Photos will appear here once they are uploaded to the images folder.');
+      showStatus('📷', 'No photos yet', 'Photos will appear here once uploaded to the images folder on GitHub.');
       return;
     }
-    allCategories = data.categories.filter(c => c.photos.length > 0);
+    allCategories = data.categories;
     buildFilterBar();
     buildGrid('all');
   })
-  .catch(err => {
+  .catch(function(err) {
     console.error('Gallery load failed:', err);
-    showStatus('⚠️', 'Gallery unavailable', 'Please check back soon or contact the site administrator.');
+    showStatus('⚠️', 'Gallery unavailable', 'Please check back soon.');
   });
 
-// ── BUILD FILTER BAR ───────────────────────────────────────────────────────
+// ── FILTER BAR ────────────────────────────────────────────────────────────────
 function buildFilterBar() {
-  const bar = document.getElementById('filter-bar');
+  var bar = document.getElementById('filter-bar');
   bar.innerHTML = '';
-  const allBtn = btn('All Photos', 'all', true);
-  bar.appendChild(allBtn);
-  allCategories.forEach(cat => bar.appendChild(btn(cat.label, cat.id, false)));
+  bar.appendChild(makeBtn('All Photos', 'all', true));
+  allCategories.forEach(function(cat) {
+    bar.appendChild(makeBtn(cat.label, cat.id, false));
+  });
 }
 
-function btn(label, id, active) {
-  const b = document.createElement('button');
+function makeBtn(label, id, active) {
+  var b = document.createElement('button');
   b.className = 'filter-btn' + (active ? ' active' : '');
   b.textContent = label;
-  b.onclick = () => {
-    document.querySelectorAll('.filter-btn').forEach(x => x.classList.remove('active'));
+  b.onclick = function() {
+    document.querySelectorAll('.filter-btn').forEach(function(x) { x.classList.remove('active'); });
     b.classList.add('active');
     buildGrid(id);
   };
   return b;
 }
 
-// ── BUILD CATEGORY GRID ───────────────────────────────────────────────────
+// ── GRID ──────────────────────────────────────────────────────────────────────
 function buildGrid(filterId) {
-  const grid = document.getElementById('cat-grid');
+  var grid = document.getElementById('cat-grid');
   grid.innerHTML = '';
-
-  const cats = filterId === 'all' ? allCategories : allCategories.filter(c => c.id === filterId);
+  var cats = filterId === 'all' ? allCategories : allCategories.filter(function(c) { return c.id === filterId; });
 
   if (cats.length === 0) {
-    grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px;color:#999;">No photos in this category yet.</div>';
+    showStatus('📷', 'No photos in this category yet', '');
     return;
   }
 
-  cats.forEach(cat => {
-    const coverSrc = `images/${cat.id}/${cat.photos[0].file}`;
-    const tile = document.createElement('div');
+  cats.forEach(function(cat) {
+    var coverSrc = 'images/' + cat.id + '/' + cat.photos[0].file;
+    var tile = document.createElement('div');
     tile.className = 'cat-tile';
     tile.setAttribute('role', 'button');
     tile.setAttribute('tabindex', '0');
-    tile.setAttribute('aria-label', `View ${cat.label} photos`);
-
-    tile.innerHTML = `
-      <img class="tile-img" src="${coverSrc}" alt="${cat.label}" loading="lazy"
-           onerror="this.style.display='none'; this.parentElement.style.background='${cat.color}'"/>
-      <div class="tile-overlay"></div>
-      <div class="view-pill">View Photos</div>
-      <div class="tile-label">
-        <div class="cat-name">${cat.label}</div>
-        <div class="cat-count">${cat.photos.length} photo${cat.photos.length !== 1 ? 's' : ''}</div>
-      </div>`;
-
-    tile.onclick     = () => openLightbox(cat);
-    tile.onkeydown   = e => { if (e.key === 'Enter' || e.key === ' ') openLightbox(cat); };
+    tile.innerHTML =
+      '<img class="tile-img" src="' + coverSrc + '" alt="' + cat.label + '" loading="lazy" ' +
+           'onerror="this.style.display=\'none\'">' +
+      '<div class="tile-overlay"></div>' +
+      '<div class="view-pill">View Photos</div>' +
+      '<div class="tile-label">' +
+        '<div class="cat-name">' + cat.label + '</div>' +
+        '<div class="cat-count">' + cat.photos.length + ' photo' + (cat.photos.length !== 1 ? 's' : '') + '</div>' +
+      '</div>';
+    tile.onclick = function() { openLightbox(cat); };
+    tile.onkeydown = function(e) { if (e.key === 'Enter' || e.key === ' ') openLightbox(cat); };
     grid.appendChild(tile);
   });
 }
 
-// ── LIGHTBOX ──────────────────────────────────────────────────────────────
+// ── LIGHTBOX ──────────────────────────────────────────────────────────────────
 function openLightbox(cat) {
-  currentPhotos    = cat.photos;
-  currentCatLabel  = cat.label;
-  currentIndex     = 0;
-
+  currentPhotos  = cat.photos;
+  currentCatId   = cat.id;
   document.getElementById('lb-title').textContent = cat.label;
   buildThumbs(cat);
   showPhoto(0);
-
-  const modal = document.getElementById('lb-modal');
-  modal.classList.add('open');
+  document.getElementById('lb-modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
@@ -446,50 +372,51 @@ function closeLightbox() {
 }
 
 function buildThumbs(cat) {
-  const strip = document.getElementById('lb-thumbs');
+  var strip = document.getElementById('lb-thumbs');
   strip.innerHTML = '';
-  cat.photos.forEach((ph, i) => {
-    const img = document.createElement('img');
+  cat.photos.forEach(function(ph, i) {
+    var img = document.createElement('img');
     img.className = 'lb-thumb' + (i === 0 ? ' active' : '');
-    img.src       = `images/${cat.id}/${ph.file}`;
-    img.alt       = ph.caption;
-    img.loading   = 'lazy';
-    img.onclick   = () => showPhoto(i);
+    img.src     = 'images/' + cat.id + '/' + ph.file;
+    img.alt     = ph.caption;
+    img.loading = 'lazy';
+    img.onclick = function() { showPhoto(i); };
     strip.appendChild(img);
   });
 }
 
 function showPhoto(idx) {
   currentIndex = (idx + currentPhotos.length) % currentPhotos.length;
-  const ph  = currentPhotos[currentIndex];
-  const cat = allCategories.find(c => c.label === currentCatLabel);
-  const src = `images/${cat.id}/${ph.file}`;
-
-  const imgEl = document.getElementById('lb-img');
+  var ph  = currentPhotos[currentIndex];
+  var src = 'images/' + currentCatId + '/' + ph.file;
+  var imgEl = document.getElementById('lb-img');
   imgEl.classList.add('fading');
-  setTimeout(() => {
+  setTimeout(function() {
     imgEl.src = src;
     imgEl.alt = ph.caption;
-    imgEl.onload = () => imgEl.classList.remove('fading');
+    imgEl.onload = function() { imgEl.classList.remove('fading'); };
   }, 160);
-
   document.getElementById('lb-caption').textContent = ph.caption;
-  document.getElementById('lb-counter').textContent =
-    `${currentIndex + 1} of ${currentPhotos.length}`;
-
-  document.querySelectorAll('.lb-thumb').forEach((t, i) =>
-    t.classList.toggle('active', i === currentIndex));
-
-  // Scroll active thumb into view
-  const activThumb = document.querySelectorAll('.lb-thumb')[currentIndex];
-  if (activThumb) activThumb.scrollIntoView({ block: 'nearest', inline: 'center' });
+  document.getElementById('lb-counter').textContent = (currentIndex + 1) + ' of ' + currentPhotos.length;
+  document.querySelectorAll('.lb-thumb').forEach(function(t, i) {
+    t.classList.toggle('active', i === currentIndex);
+  });
+  var activeThumb = document.querySelectorAll('.lb-thumb')[currentIndex];
+  if (activeThumb) activeThumb.scrollIntoView({ block: 'nearest', inline: 'center' });
 }
 
 function stepPhoto(dir) { showPhoto(currentIndex + dir); }
 
-// Keyboard navigation
-document.addEventListener('keydown', e => {
+document.addEventListener('keydown', function(e) {
   if (!document.getElementById('lb-modal').classList.contains('open')) return;
   if (e.key === 'ArrowRight') stepPhoto(1);
   if (e.key === 'ArrowLeft')  stepPhoto(-1);
-  if (e
+  if (e.key === 'Escape')     closeLightbox();
+});
+
+document.getElementById('lb-modal').addEventListener('click', function(e) {
+  if (e.target === document.getElementById('lb-modal')) closeLightbox();
+});
+</script>
+</body>
+</html>
