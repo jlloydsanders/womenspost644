@@ -1,0 +1,128 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Files uploaded through the CMS go here
+media_folder: "public/uploads/photos"
+public_folder: "/uploads/photos"
+
+# Anyone logged in via Netlify Identity can use the CMS
+# Role-based access is controlled in Netlify Identity dashboard
+
+site_url: https://womenspost644.netlify.app
+display_url: https://womenspost644.netlify.app
+logo_url: https://womenspost644.netlify.app/uploads/photos/logo.png
+
+collections:
+
+  # ── PHOTO GALLERY ──────────────────────────────────────────
+  - name: "photos"
+    label: "📷 Photo Gallery"
+    label_singular: "Photo"
+    folder: "content/photos"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Photo Title", name: "title", widget: "string", hint: "e.g. Memorial Day Ceremony 2025" }
+      - { label: "Category", name: "category", widget: "select",
+          options: ["Events", "Community", "Ceremonies", "Members", "Fundraisers", "Awards", "Remembrance"],
+          default: "Events" }
+      - { label: "Photo", name: "photo", widget: "image", hint: "Upload your photo here" }
+      - { label: "Caption", name: "caption", widget: "string", required: false, hint: "Optional short description" }
+      - { label: "Date Taken", name: "date", widget: "date" }
+      - { label: "Show on Website", name: "published", widget: "boolean", default: true }
+
+  # ── MEETING MINUTES ────────────────────────────────────────
+  - name: "minutes"
+    label: "📋 Meeting Minutes"
+    label_singular: "Meeting Minutes"
+    folder: "content/minutes"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-minutes"
+    media_folder: "/public/uploads/minutes"
+    public_folder: "/uploads/minutes"
+    fields:
+      - { label: "Meeting Title", name: "title", widget: "string", hint: "e.g. April 2025 General Meeting" }
+      - { label: "Meeting Date", name: "date", widget: "date" }
+      - { label: "Meeting Type", name: "type", widget: "select",
+          options: ["General Membership", "Executive Committee", "Special Session", "Annual Meeting"],
+          default: "General Membership" }
+      - { label: "Minutes Document (PDF)", name: "document", widget: "file",
+          hint: "Upload PDF of meeting minutes", media_folder: "/public/uploads/minutes", public_folder: "/uploads/minutes" }
+      - { label: "Notes / Summary", name: "body", widget: "markdown", required: false,
+          hint: "Optional — type a brief summary or paste key points" }
+      - { label: "Show on Website", name: "published", widget: "boolean", default: true }
+
+  # ── NEWSLETTERS ────────────────────────────────────────────
+  - name: "newsletters"
+    label: "📰 Newsletters"
+    label_singular: "Newsletter"
+    folder: "content/newsletters"
+    create: true
+    slug: "{{year}}-{{month}}-newsletter"
+    media_folder: "/public/uploads/newsletters"
+    public_folder: "/uploads/newsletters"
+    fields:
+      - { label: "Newsletter Title", name: "title", widget: "string", hint: "e.g. Post 644 — Spring 2025" }
+      - { label: "Issue Date", name: "date", widget: "date" }
+      - { label: "Newsletter File (PDF)", name: "document", widget: "file",
+          hint: "Upload PDF newsletter", media_folder: "/public/uploads/newsletters", public_folder: "/uploads/newsletters" }
+      - { label: "Cover Image", name: "cover", widget: "image", required: false,
+          hint: "Optional preview image for the newsletter" }
+      - { label: "Description", name: "description", widget: "text", required: false,
+          hint: "One or two sentences describing this issue" }
+      - { label: "Show on Website", name: "published", widget: "boolean", default: true }
+
+  # ── EVENTS ─────────────────────────────────────────────────
+  - name: "events"
+    label: "📅 Events"
+    label_singular: "Event"
+    folder: "content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Event Name", name: "title", widget: "string" }
+      - { label: "Event Date", name: "date", widget: "datetime" }
+      - { label: "Category", name: "category", widget: "select",
+          options: ["Meeting", "Fundraiser", "Community", "Social", "Ceremony"],
+          default: "Meeting" }
+      - { label: "Location", name: "location", widget: "string", hint: "e.g. Post Hall, 123 Main St" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Show on Website", name: "published", widget: "boolean", default: true }
+
+  # ── NEWS & ANNOUNCEMENTS ───────────────────────────────────
+  - name: "news"
+    label: "📣 News & Announcements"
+    label_singular: "News Post"
+    folder: "content/news"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Headline", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "date" }
+      - { label: "Category", name: "category", widget: "select",
+          options: ["Announcement", "Community Service", "Recognition", "Veterans Affairs", "Post News"],
+          default: "Announcement" }
+      - { label: "Summary", name: "description", widget: "text", hint: "2-3 sentence summary shown on homepage" }
+      - { label: "Full Story", name: "body", widget: "markdown", required: false }
+      - { label: "Photo", name: "photo", widget: "image", required: false }
+      - { label: "Show on Website", name: "published", widget: "boolean", default: true }
+
+  # ── SITE SETTINGS ──────────────────────────────────────────
+  - name: "settings"
+    label: "⚙️ Site Settings"
+    files:
+      - label: "Post Information"
+        name: "post_info"
+        file: "content/settings/post-info.json"
+        fields:
+          - { label: "Post Phone Number", name: "phone", widget: "string" }
+          - { label: "Post Email", name: "email", widget: "string" }
+          - { label: "Meeting Address", name: "address", widget: "string" }
+          - { label: "City, State ZIP", name: "city_state_zip", widget: "string" }
+          - { label: "Facebook Page URL", name: "facebook", widget: "string", required: false }
+          - { label: "Member Count", name: "member_count", widget: "string", default: "100+" }
+          - { label: "Founded Year", name: "founded", widget: "string" }
+          - { label: "Annual Dues Amount", name: "dues", widget: "string", hint: "e.g. 35" }
+          - { label: "State / Department", name: "state", widget: "string" }
+          - { label: "District Number", name: "district", widget: "string" }

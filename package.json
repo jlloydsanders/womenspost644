@@ -1,0 +1,8 @@
+{
+  "name": "womenspost644",
+  "version": "1.0.0",
+  "description": "American Legion Women's Post 644 website",
+  "scripts": {
+    "build": "node scripts/build-content-index.js"
+  }
+}

@@ -1,21 +1,14 @@
-# netlify.toml
-# ─────────────────────────────────────────────────────────────────────────────
-# IMPORTANT: This file must live in the ROOT of your GitHub repository.
-#
-# If your site files (index.html, gallery.html, images/) are directly
-# in the repo root, use:  publish = "."
-#
-# If your site files are inside a subfolder like "post644-multipage/", use:
-#   publish = "post644-multipage"
-#
-# Change the line below to match your repo structure.
-# ─────────────────────────────────────────────────────────────────────────────
-
 [build]
-  publish   = "."                  # ← change to "post644-multipage" if needed
-  functions = "netlify/functions"
+  publish = "public"
+  command = "node scripts/build-content-index.js"
+
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
 
 [[headers]]
-  for = "/images/*"
+  for = "/admin/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400"
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
