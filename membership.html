@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Join Us | American Legion Women's Post 644</title>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <span>🇺🇸 American Legion &mdash; Department of [Your State] &mdash; District [#]</span>
+  <span>📞 <a href="tel:+15551234567">(555) 123-4567</a> &nbsp;|&nbsp; ✉️ <a href="mailto:info@womenspost644.org">info@womenspost644.org</a></span>
+</div>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-emblem" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="48" fill="#1C2F5E" stroke="#C9A84C" stroke-width="3"/>
+        <text x="50" y="38" text-anchor="middle" font-family="serif" font-size="9" fill="#C9A84C" font-weight="bold">AMERICAN</text>
+        <text x="50" y="50" text-anchor="middle" font-family="serif" font-size="18" fill="white" font-weight="bold">⚜</text>
+        <text x="50" y="65" text-anchor="middle" font-family="serif" font-size="9" fill="#C9A84C" font-weight="bold">LEGION</text>
+        <text x="50" y="76" text-anchor="middle" font-family="serif" font-size="7.5" fill="white">POST 644</text>
+      </svg>
+      <div class="nav-title">
+        <span class="post-name">Women's Post 644</span>
+        <span class="post-sub">The American Legion</span>
+      </div>
+    </a>
+  </div>
+</header>
+
+<!-- TAB NAV (desktop) -->
+<nav class="tab-nav">
+  <div class="tab-nav-inner">
+    <a href="index.html" class="tab-link">🏠 Home</a>
+    <a href="about.html" class="tab-link">About</a>
+    <a href="meetings.html" class="tab-link">Meetings</a>
+    <a href="events.html" class="tab-link">Events</a>
+    <a href="news.html" class="tab-link">News</a>
+    <a href="gallery.html" class="tab-link">Gallery</a>
+    <a href="contact.html" class="tab-link">Contact</a>
+    <a href="membership.html" class="tab-link active join-btn">Join Us</a>
+  </div>
+  <!-- Mobile -->
+  <div class="mobile-topbar">
+    <span>Join Us</span>
+    <button class="hamburger" onclick="document.getElementById('mob-menu').classList.toggle('open')">☰</button>
+  </div>
+  <div class="mobile-menu" id="mob-menu">
+    <a href="index.html" class="tab-link">🏠 Home</a>
+    <a href="about.html" class="tab-link">About</a>
+    <a href="meetings.html" class="tab-link">Meetings</a>
+    <a href="events.html" class="tab-link">Events</a>
+    <a href="news.html" class="tab-link">News</a>
+    <a href="gallery.html" class="tab-link">Gallery</a>
+    <a href="contact.html" class="tab-link">Contact</a>
+    <a href="membership.html" class="tab-link active join-btn">Join Us</a>
+  </div>
+</nav>
+
+<!-- PAGE CONTENT -->
+<main class="page-content">
+
+<style>
+  .mem-wrap { background:#1C2F5E; }
+  .membership-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+  .membership-text p { font-size:1rem; line-height:1.8; color:rgba(255,255,255,0.82); margin-bottom:16px; }
+  .eligibility-list { list-style:none; margin:20px 0 30px; }
+  .eligibility-list li { padding:10px 0 10px 30px; position:relative; color:rgba(255,255,255,0.85); font-size:0.95rem; border-bottom:1px solid rgba(255,255,255,0.1); }
+  .eligibility-list li::before { content:'★'; position:absolute; left:0; color:#E8C96A; font-size:0.8rem; }
+  @media (max-width:900px) { .membership-grid { grid-template-columns:1fr; } }
+</style>
+<div class="section-pad mem-wrap">
+  <div class="constrain">
+    <div class="membership-grid">
+      <div class="membership-text">
+        <div class="section-label section-label-gold">Become a Member</div>
+        <h2 class="section-title section-title-white">Join Women's Post 644</h2>
+        <div class="section-rule section-rule-gold"></div>
+        <p>The American Legion is open to veterans who served honorably in the U.S. Armed Forces. As an all-women's post, we offer a unique community of fellowship, shared service, and sisterhood.</p>
+        <p>Annual membership dues support our programs for veterans, children's scholarships, community outreach, and more.</p>
+        <h3 style="font-family:'Playfair Display',serif; font-size:1.1rem; color:#E8C96A; margin:20px 0 10px;">Eligibility Requirements</h3>
+        <ul class="eligibility-list">
+          <li>U.S. Military veteran (any branch)</li>
+          <li>Served honorably during an eligible wartime period</li>
+          <li>U.S. citizen or U.S. national</li>
+          <li>Active duty service members are also eligible</li>
+        </ul>
+        <p style="font-size:0.88rem; color:rgba(255,255,255,0.6); font-style:italic;">Annual dues: $[Amount]/year &mdash; Contact us for details.</p>
+      </div>
+      <div class="form-area">
+        <h3>Request Membership Info</h3>
+        <p class="form-sub">Fill out the form below and we'll be in touch with details on how to join.</p>
+        <div class="form-row">
+          <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane"/></div>
+          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"/></div>
+        </div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="jane@example.com"/></div>
+        <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="(555) 000-0000"/></div>
+        <div class="form-group"><label>Branch of Service</label>
+          <select><option value="">Select branch...</option><option>Army</option><option>Navy</option><option>Marine Corps</option><option>Air Force</option><option>Coast Guard</option><option>Space Force</option><option>National Guard / Reserve</option></select>
+        </div>
+        <div class="form-group"><label>Questions or Comments</label><textarea placeholder="Tell us a bit about yourself or ask any questions..."></textarea></div>
+        <button class="btn-submit" onclick="alert('Thank you! We'll be in touch soon.')">Submit Interest Form</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-name">Women's Post 644</div>
+        <div class="brand-sub">The American Legion</div>
+        <p>An all-women's post dedicated to honoring those who served, supporting our veterans, and strengthening our community through service and fellowship.</p>
+      </div>
+      <div class="footer-col"><h4>Quick Links</h4><ul>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="meetings.html">Meetings</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="news.html">News</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Get Involved</h4><ul>
+        <li><a href="membership.html">Join the Post</a></li>
+        <li><a href="contact.html">Volunteer</a></li>
+        <li><a href="contact.html">Donate</a></li>
+        <li><a href="contact.html">Sponsor an Event</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Resources</h4><ul>
+        <li><a href="https://www.legion.org" target="_blank">American Legion National</a></li>
+        <li><a href="https://www.va.gov" target="_blank">VA Benefits</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 American Legion Women's Post 644. All rights reserved.</span>
+      <div class="footer-stripes">
+        <span class="stripe-red"></span><span class="stripe-white"></span><span class="stripe-blue"></span>
+        <span class="stripe-red"></span><span class="stripe-white"></span><span class="stripe-blue"></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
