@@ -267,11 +267,12 @@
   }
   .btn-outline:hover { border-color: white; background: rgba(255,255,255,0.08); }
   .hero-emblem-large {
-    width: 240px;
-    height: 240px;
-    opacity: 0.18;
-    filter: brightness(10);
-  }
+    width: 160px;
+    height: 160px;
+    opacity: 0.92;
+    filter: drop-shadow(0 4px 24px rgba(0,0,0,0.35));
+    flex-shrink: 0;
+}
 
   /* ── MISSION STRIP ── */
   .mission-strip {
@@ -991,12 +992,61 @@
         <a href="#" onclick="showTab('about');return false;" class="btn-outline">Learn More</a>
       </div>
     </div>
-    <svg class="hero-emblem-large" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="50" r="48" fill="none" stroke="white" stroke-width="2"/>
-      <text x="50" y="38" text-anchor="middle" font-family="serif" font-size="9" fill="white" font-weight="bold">AMERICAN</text>
-      <text x="50" y="55" text-anchor="middle" font-family="serif" font-size="24" fill="white" font-weight="bold">⚜</text>
-      <text x="50" y="68" text-anchor="middle" font-family="serif" font-size="9" fill="white" font-weight="bold">LEGION</text>
-      <text x="50" y="78" text-anchor="middle" font-family="serif" font-size="7.5" fill="white">POST 644</text>
+<svg class="hero-emblem-large" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer ring -->
+      <circle cx="100" cy="100" r="96" fill="none" stroke="#C9A84C" stroke-width="2.5" opacity="0.9"/>
+      <circle cx="100" cy="100" r="88" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.6"/>
+
+      <!-- Sun rays (16 rays radiating outward) -->
+      <g opacity="0.55" stroke="#C9A84C" stroke-width="1.2">
+        <line x1="100" y1="10" x2="100" y2="30"/>
+        <line x1="100" y1="170" x2="100" y2="190"/>
+        <line x1="10" y1="100" x2="30" y2="100"/>
+        <line x1="170" y1="100" x2="190" y2="100"/>
+        <line x1="29" y1="29" x2="43" y2="43"/>
+        <line x1="157" y1="157" x2="171" y2="171"/>
+        <line x1="171" y1="29" x2="157" y2="43"/>
+        <line x1="43" y1="157" x2="29" y2="171"/>
+        <line x1="19" y1="63" x2="36" y2="70"/>
+        <line x1="164" y1="130" x2="181" y2="137"/>
+        <line x1="63" y1="19" x2="70" y2="36"/>
+        <line x1="130" y1="164" x2="137" y2="181"/>
+        <line x1="181" y1="63" x2="164" y2="70"/>
+        <line x1="36" y1="130" x2="19" y2="137"/>
+        <line x1="137" y1="19" x2="130" y2="36"/>
+        <line x1="70" y1="164" x2="63" y2="181"/>
+      </g>
+
+      <!-- Star of stars — 5 outer stars -->
+      <g fill="#C9A84C" opacity="0.9" transform="translate(0,32)">
+        <polygon points="100,18 102.5,25.5 110,25.5 104,30 106.5,37.5 100,33 93.5,37.5 96,30 90,25.5 97.5,25.5" transform="scale(0.7) translate(43,10)"/>
+        <polygon points="100,18 102.5,25.5 110,25.5 104,30 106.5,37.5 100,33 93.5,37.5 96,30 90,25.5 97.5,25.5" transform="rotate(72 100 100) scale(0.7) translate(43,10) rotate(-72 100 100)"/>
+        <polygon points="100,18 102.5,25.5 110,25.5 104,30 106.5,37.5 100,33 93.5,37.5 96,30 90,25.5 97.5,25.5" transform="rotate(144 100 100) scale(0.7) translate(43,10) rotate(-144 100 100)"/>
+        <polygon points="100,18 102.5,25.5 110,25.5 104,30 106.5,37.5 100,33 93.5,37.5 96,30 90,25.5 97.5,25.5" transform="rotate(216 100 100) scale(0.7) translate(43,10) rotate(-216 100 100)"/>
+        <polygon points="100,18 102.5,25.5 110,25.5 104,30 106.5,37.5 100,33 93.5,37.5 96,30 90,25.5 97.5,25.5" transform="rotate(288 100 100) scale(0.7) translate(43,10) rotate(-288 100 100)"/>
+      </g>
+
+
+      <!-- "AMERICAN" arc top -->
+      <path id="topArc" d="M 48,80 A 54,54 0 0,1 152,80" fill="none"/>
+      <text font-family="Georgia, serif" font-size="11" font-weight="bold" fill="white" letter-spacing="3">
+        <textPath href="#topArc" startOffset="50%" text-anchor="middle">AMERICAN</textPath>
+      </text>
+
+      <!-- "LEGION" arc bottom -->
+      <path id="botArc" d="M 52,122 A 54,54 0 0,0 148,132" fill="none"/>
+      <text font-family="Georgia, serif" font-size="11" font-weight="bold" fill="white" letter-spacing="4">
+        <textPath href="#botArc" startOffset="50%" text-anchor="middle">LEGION</textPath>
+      </text>
+
+
+
+      <!-- POST 644 bottom text -->
+      <text x="100" y="128" text-anchor="middle" font-family="Georgia, serif" font-size="11" fill="white" letter-spacing="2" opacity="0.85">POST 644</text>
+
+      <!-- small stars left and right of POST 644 -->
+      <text x="68" y="157" text-anchor="middle" font-size="7" fill="#C9A84C" opacity="0.8">★</text>
+      <text x="132" y="157" text-anchor="middle" font-size="7" fill="#C9A84C" opacity="0.8">★</text>
     </svg>
   </div>
 </section>
