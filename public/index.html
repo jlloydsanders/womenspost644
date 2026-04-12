@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>American Legion Women's Post 644</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet"/>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 <style>
   :root {
     --red: #B22234;
@@ -910,6 +911,18 @@
   .hero-buttons { animation: fadeUp 0.7s 0.3s ease both; }
 </style>
 </head>
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function(user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function() {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 <body>
 
 <!-- TOP BAR -->
