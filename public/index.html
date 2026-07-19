@@ -1555,16 +1555,11 @@ function filterGallery(cat) {
 }
 
 function showGalleryPlaceholder() {
-  var catIcons = [
-    {icon:'🎖️',label:'Events'},{icon:'🤝',label:'Community'},
-    {icon:'🇺🇸',label:'Ceremonies'},{icon:'👥',label:'Members'},
-    {icon:'🎗️',label:'Fundraisers'},{icon:'⭐',label:'Awards'},
-    {icon:'🌺',label:'Remembrance'},{icon:'🏛️',label:'History'}
-  ];
-  var html = '';
-  for (var i = 0; i < catIcons.length; i++) {
-    html += '<div class="gallery-item">' + catIcons[i].icon + '<span>' + catIcons[i].label + '</span></div>';
-  }
+  var html = '<div style="grid-column:1/-1; text-align:center; padding:70px 20px; background:white; border-radius:6px; border:2px dashed var(--light-gray);">';
+  html += '<div style="font-size:3rem; margin-bottom:16px; opacity:0.5;">🖼️</div>';
+  html += '<h3 style="font-family:\'Playfair Display\', serif; font-size:1.3rem; color:var(--blue); margin-bottom:8px;">Photos Coming Soon</h3>';
+  html += '<p style="color:var(--gray); font-size:0.95rem; max-width:400px; margin:0 auto;">We\'re building our photo gallery. Check back soon to see moments from our events, ceremonies, and community service.</p>';
+  html += '</div>';
   document.getElementById('gallery-grid').innerHTML = html;
 }
 
